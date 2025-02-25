@@ -82,12 +82,12 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.PrimitiveCollection<string>("CustomerId")
+                    b.PrimitiveCollection<string>("Customers")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<Guid>("Number")
-                        .HasColumnType("char(36)");
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
 
                     b.Property<int>("PricePerNight")
                         .HasColumnType("int");

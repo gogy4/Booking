@@ -11,6 +11,11 @@ public class CustomerServices(ICustomerRepository customerRepository)
         await customerRepository.AddAsync(customer);
         return customer;
     }
+
+    public async Task<Customer?> GetById(Guid id)
+    {
+        return await customerRepository.GetByIdAsync(id);
+    }
     
     public async Task ChangeFirstName(Guid customerId, string firstName)
     {
@@ -38,5 +43,6 @@ public class CustomerServices(ICustomerRepository customerRepository)
         var customer = await customerRepository.GetByIdAsync(customerId);
         if (customer == null) throw new KeyNotFoundException($"Customer with id: {customerId} does not exist");
         changeCustomerData(customer);
+        await customerRepository.UpdateAsync(customer);
     }
 }

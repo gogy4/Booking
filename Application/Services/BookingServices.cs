@@ -16,12 +16,34 @@ public class BookingServices(
         if (room is null) throw new NullReferenceException("Room not found");
         var customers = await customerRepository.GetCustomersAsync(customerIds);
         if (customers is null) throw new NullReferenceException("Customers not found");
-        if (startDate <= endDate) throw new ArgumentException("Start date cannot be earlier than end date");
+        if (startDate >= endDate) throw new ArgumentException("Start date cannot be earlier than end date");
         var booking = new Booking(roomId, customerIds, startDate, endDate, status);
         await bookingRepository.AddAsync(booking);
         return booking;
     }
 
+    public async Task<List<Booking>> GetBookings(BookingStatus status)
+    {
+        var bookings = await bookingRepository.GetByStatusAsync(status);
+        if (bookings is null) throw new NullReferenceException("Booking not found");
+        return bookings;
+    }
+
+    public async Task UpdateBooking(Guid bookingId)
+    {
+        await bookingRepository.UpdateAsync(bookingId);
+    }
+
+    public async Task DeleteBooking(Guid bookingId)
+    {
+        await bookingRepository.DeleteAsync(bookingId);
+    }
+
+    public async Task<Booking?> GetById(Guid id)
+    {
+        return await bookingRepository.GetByIdAsync(id);
+    }
+    
     public async Task CancelRental(Guid bookingId)
     {
         await ChangeData(bookingId, booking => booking.CancelRental());
@@ -52,5 +74,6 @@ public class BookingServices(
         var booking = await bookingRepository.GetByIdAsync(bookingId);
         if (booking is null) throw new KeyNotFoundException("Booking not found");
         changeBookingData(booking);
+        await bookingRepository.UpdateAsync(bookingId);
     }
 }

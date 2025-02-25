@@ -19,8 +19,10 @@ public class BookingRepository(AppDbContext context) : IBookingRepository
         return await context.Bookings.Where(x=> x.Status == status).ToListAsync();
     }
 
-    public async Task UpdateAsync(Booking booking)
+    public async Task UpdateAsync(Guid id)
     {
+        var booking = await GetByIdAsync(id);
+        if (booking is null) return;
         context.Bookings.Update(booking);
         await context.SaveChangesAsync();
     }

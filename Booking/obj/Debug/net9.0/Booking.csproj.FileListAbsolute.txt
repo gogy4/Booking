@@ -199,3 +199,11 @@ D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\ru\Microsoft.CodeAnal
 D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\Microsoft.OpenApi.dll
+D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\Application.dll
+D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\Application.pdb
+D:\Rider Projects\Booking\Booking\Booking\obj\Debug\net9.0\Booking.MvcApplicationPartsAssemblyInfo.cs
+D:\Rider Projects\Booking\Booking\Booking\obj\Debug\net9.0\Booking.sourcelink.json

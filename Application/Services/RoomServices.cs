@@ -6,11 +6,16 @@ namespace Application.Services;
 
 public class RoomServices(IRoomRepository roomRepository)
 {
-    public async Task<Room> CreateRoom(Guid number, List<Guid> customerId, RoomType roomType, int pricePerNight)
+    public async Task<Room> CreateRoom(int number, List<Guid> customerId, RoomType roomType, int pricePerNight)
     {
         var room = new Room(number, customerId, roomType, pricePerNight);
         await roomRepository.AddAsync(room);
         return room;
+    }
+
+    public async Task<Room?> GetById(Guid roomId)
+    {
+        return await roomRepository.GetByIdAsync(roomId);
     }
     
     public async Task CancelRental(Guid roomId)
@@ -43,5 +48,6 @@ public class RoomServices(IRoomRepository roomRepository)
         var room = await roomRepository.GetByIdAsync(roomId);
         if (room is null) throw new KeyNotFoundException("Room not found");
         changeRoomStatus(room);
+        await roomRepository.UpdateAsync(room);
     }
 }
