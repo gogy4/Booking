@@ -19,18 +19,14 @@ public class BookingRepository(AppDbContext context) : IBookingRepository
         return await context.Bookings.Where(x=> x.Status == status).ToListAsync();
     }
 
-    public async Task UpdateAsync(Guid id)
+    public async Task UpdateAsync(Booking booking)
     {
-        var booking = await GetByIdAsync(id);
-        if (booking is null) return;
         context.Bookings.Update(booking);
         await context.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(Guid id)
+    public async Task DeleteAsync(Booking booking)
     {
-        var booking = await GetByIdAsync(id);
-        if (booking is null) return;
         context.Bookings.Remove(booking);
         await context.SaveChangesAsync();
     }
@@ -39,5 +35,10 @@ public class BookingRepository(AppDbContext context) : IBookingRepository
     {
         await context.Bookings.AddAsync(booking);
         await context.SaveChangesAsync();
+    }
+
+    public async Task<List<Booking>> GetBookingsByDate(DateTime startDate, DateTime endDate)
+    {
+        return await context.Bookings.Where(b=>b.StartDate >= startDate && b.EndDate <= endDate).ToListAsync();
     }
 }

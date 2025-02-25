@@ -37,6 +37,12 @@ public class Room
         Status = RoomStatus.Occupied;
     }
 
+    public void RentalRoom()
+    {
+        if (Status != RoomStatus.Free) throw new ArgumentException("Invalid status");
+        Status = RoomStatus.Rental;
+    }
+
     public void CleanRoom()
     {
         if (Status != RoomStatus.Occupied) throw new ArgumentException("Invalid status");

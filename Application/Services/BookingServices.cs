@@ -22,58 +22,58 @@ public class BookingServices(
         return booking;
     }
 
-    public async Task<List<Booking>> GetBookings(BookingStatus status)
+    public async Task<List<Booking>> GetBookings(BookingStatus status = BookingStatus.All)
     {
         var bookings = await bookingRepository.GetByStatusAsync(status);
         if (bookings is null) throw new NullReferenceException("Booking not found");
         return bookings;
     }
 
-    public async Task UpdateBooking(Guid bookingId)
+    public async Task UpdateBooking(Booking booking)
     {
-        await bookingRepository.UpdateAsync(bookingId);
+        await bookingRepository.UpdateAsync(booking);
     }
 
-    public async Task DeleteBooking(Guid bookingId)
+    public async Task<List<Booking>> GetBookingsByDate(DateTime startDate, DateTime endDate)
     {
-        await bookingRepository.DeleteAsync(bookingId);
+        return await bookingRepository.GetBookingsByDate(startDate, endDate);
+    }
+
+    public async Task DeleteBooking(Booking booking)
+    {
+        await bookingRepository.DeleteAsync(booking);
     }
 
     public async Task<Booking?> GetById(Guid id)
     {
         return await bookingRepository.GetByIdAsync(id);
     }
-    
-    public async Task CancelRental(Guid bookingId)
+
+    public async Task CancelRental(Booking booking)
     {
-        await ChangeData(bookingId, booking => booking.CancelRental());
+        await ChangeData(booking, x => booking.CancelRental());
     }
 
-    public async Task ConfirmRental(Guid bookingId)
+    public async Task ConfirmRental(Booking booking)
     {
-        await ChangeData(bookingId, booking => booking.ConfirmRental());
+        await ChangeData(booking, x => booking.ConfirmRental());
     }
 
-    public async Task ChangeDate(Guid bookingId, DateTime newStartDate, DateTime newEndDate)
+    public async Task ChangeDate(Booking booking, DateTime newStartDate, DateTime newEndDate)
     {
-        await ChangeData(bookingId, booking => booking.ChangeDate(newStartDate, newEndDate));
+        await ChangeData(booking, x => booking.ChangeDate(newStartDate, newEndDate));
     }
 
-    public async Task ChangeStartDate(Guid bookingId, DateTime newStartDate)
+    public async Task<int> GetRoomNumber(Booking booking)
     {
-        await ChangeData(bookingId, booking => booking.ChangeStartDate(newStartDate));
+        var room = await roomRepository.GetByIdAsync(booking.RoomId);
+        if (room is null) throw new NullReferenceException("Room not found");
+        return room.Number;
     }
 
-    public async Task ChangeEndDate(Guid bookingId, DateTime newEndDate)
+    private async Task ChangeData(Booking booking, Action<Booking> changeBookingData)
     {
-        await ChangeData(bookingId, booking => booking.ChangeEndDate(newEndDate));
-    }
-
-    private async Task ChangeData(Guid bookingId, Action<Booking> changeBookingData)
-    {
-        var booking = await bookingRepository.GetByIdAsync(bookingId);
-        if (booking is null) throw new KeyNotFoundException("Booking not found");
         changeBookingData(booking);
-        await bookingRepository.UpdateAsync(bookingId);
+        await bookingRepository.UpdateAsync(booking);
     }
 }

@@ -20,30 +20,35 @@ public class RoomServices(IRoomRepository roomRepository)
     
     public async Task CancelRental(Guid roomId)
     {
-        await ChangeStatusRoom(roomId, room=>room.CancelRental());
+        await ChangeDataRoom(roomId, room=>room.CancelRental());
+    }
+
+    public async Task ConfirmRental(Guid roomId)
+    {
+        await ChangeDataRoom(roomId, room => room.RentalRoom());
     }
 
     public async Task PopulateRoom(Guid roomId)
     {
-       await ChangeStatusRoom(roomId, room => room.PopulateRoom());
+       await ChangeDataRoom(roomId, room => room.PopulateRoom());
     }
 
     public async Task CleanRoom(Guid roomId)
     {
-       await ChangeStatusRoom(roomId, room => room.CleanRoom());
+       await ChangeDataRoom(roomId, room => room.CleanRoom());
     }
 
     public async Task SetFreeRoom(Guid roomId)
     {
-       await ChangeStatusRoom(roomId, room => room.SetFreeRoom());
+       await ChangeDataRoom(roomId, room => room.SetFreeRoom());
     }
 
     public async Task ChangePricePerNight(Guid roomId, int newPrice)
     {
-        await ChangeStatusRoom(roomId, room=>room.ChangePrice(newPrice));
+        await ChangeDataRoom(roomId, room=>room.ChangePrice(newPrice));
     }
 
-    private async Task ChangeStatusRoom(Guid roomId, Action<Room> changeRoomStatus)
+    private async Task ChangeDataRoom(Guid roomId, Action<Room> changeRoomStatus)
     {
         var room = await roomRepository.GetByIdAsync(roomId);
         if (room is null) throw new KeyNotFoundException("Room not found");

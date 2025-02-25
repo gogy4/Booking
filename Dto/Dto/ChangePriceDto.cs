@@ -1,3 +1,3 @@
-﻿namespace Booking.DTO;
+﻿namespace Dto;
 
 public record class ChangePriceDto(int NewPrice);

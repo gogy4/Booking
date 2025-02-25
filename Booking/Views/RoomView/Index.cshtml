@@ -1,0 +1,20 @@
+﻿@model Dto.RoomDto
+
+@{
+    ViewData["Title"] = $"Комната №{Model.Number}";
+}
+
+<h2>Комната №@Model.Number</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Детали комнаты</h4>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Тип комнаты:</strong> @Model.RoomType</li>
+            <li class="list-group-item"><strong>Цена за ночь:</strong> @Model.PricePerNight ₽</li>
+            <li class="list-group-item"><strong>Статус: </strong> @Model.Status</li>
+        </ul>
+    </div>
+</div>
+
+<a href="@Url.Action("Index", "BookingView")" class="btn btn-secondary mt-3">Назад к бронированиям</a>

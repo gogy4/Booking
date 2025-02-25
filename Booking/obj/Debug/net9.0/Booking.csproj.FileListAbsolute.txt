@@ -207,3 +207,7 @@ D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\Application.dll
 D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\Application.pdb
 D:\Rider Projects\Booking\Booking\Booking\obj\Debug\net9.0\Booking.MvcApplicationPartsAssemblyInfo.cs
 D:\Rider Projects\Booking\Booking\Booking\obj\Debug\net9.0\Booking.sourcelink.json
+D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\Dto.dll
+D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\Dto.pdb
+D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\API.dll
+D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\API.pdb

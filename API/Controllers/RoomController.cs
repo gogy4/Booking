@@ -1,8 +1,8 @@
 ﻿using Application.Services;
-using Booking.DTO; // Добавляем DTO
+using Dto;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Booking.Controllers;
+namespace API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -17,7 +17,7 @@ public class RoomController(RoomServices roomServices) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateRoomDto roomDto) // Используем DTO
+    public async Task<IActionResult> Create([FromBody] RoomDto roomDto) // Используем DTO
     {
         var room = await roomServices.CreateRoom(roomDto.Number, roomDto.Customers, roomDto.RoomType, roomDto.PricePerNight);
         return CreatedAtAction(nameof(GetById), new { id = room.Id }, room);

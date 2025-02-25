@@ -1,9 +1,8 @@
 ﻿using Application.Services;
-using Booking.DTO;
-using Domain.Entities;
+using Dto;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Booking.Controllers;
+namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

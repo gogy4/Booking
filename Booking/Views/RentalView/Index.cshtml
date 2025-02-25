@@ -1,0 +1,47 @@
+﻿@model Dto.BookingDto
+
+@{
+    ViewData["Title"] = "Выбор аренды";
+}
+
+<h2>Аренда: @Model.Number</h2>
+
+<form method="post" asp-action="Rent" asp-route-id="@Model.Id">
+    <div class="form-group">
+        <label for="startDate">Дата начала:</label>
+        <input type="date" id="startDate" name="startDate" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="endDate">Дата окончания:</label>
+        <input type="date" id="endDate" name="endDate" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-success">Забронировать</button>
+</form>
+
+<a href="@Url.Action("Index", "BookingView")" class="btn btn-secondary">Назад</a>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let startDateInput = document.getElementById("startDate");
+        let endDateInput = document.getElementById("endDate");
+
+        // Получаем сегодняшнюю дату в формате YYYY-MM-DD
+        let today = new Date().toISOString().split("T")[0];
+
+        // Устанавливаем минимальное значение для startDate и endDate
+        startDateInput.min = today;
+        endDateInput.min = today;
+
+        // При изменении startDate обновляем min для endDate
+        startDateInput.addEventListener("change", function () {
+            let startDateValue = startDateInput.value;
+            endDateInput.min = startDateValue; // Запрещаем выбор endDate раньше startDate
+
+            // Если endDate уже выбрана и меньше startDate, сбрасываем её
+            if (endDateInput.value < startDateValue) {
+                endDateInput.value = "";
+            }
+        });
+    });
+</script>

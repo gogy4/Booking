@@ -19,6 +19,7 @@ public class Booking
 
     public Booking(Guid roomId, List<Guid> customers, DateTime startDate, DateTime endDate, BookingStatus status)
     {
+        Id = Guid.NewGuid();
         RoomId = roomId;
         Customers = customers;
         StartDate = startDate;
@@ -40,17 +41,8 @@ public class Booking
 
     public void ChangeDate(DateTime newStartDate, DateTime newEndDate)
     {
+        if (newStartDate >= newEndDate) throw new ArgumentException("Invalid date");
         StartDate = newStartDate;
-        EndDate = newEndDate;
-    }
-    
-    public void ChangeStartDate(DateTime newStartDate)
-    {
-        StartDate = newStartDate;
-    }
-    
-    public void ChangeEndDate(DateTime newEndDate)
-    {
         EndDate = newEndDate;
     }
 }
