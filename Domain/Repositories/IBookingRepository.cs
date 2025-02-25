@@ -5,11 +5,12 @@ namespace Infrastructure.Interfaces;
 
 public interface IBookingRepository
 {
-    Task<Booking?> GetByIdAsync(Guid id);
-    Task<List<Booking?>> GetByStatusAsync(BookingStatus status = BookingStatus.All);
+    Task<Booking?> GetByIdAsync(Guid id); 
     Task UpdateAsync(Booking booking);
     Task DeleteAsync(Booking booking);
     Task AddAsync(Booking booking);
+    
+    Task<List<Booking>> GetAllAsync(DateTime startDate = default);
 
     Task<List<Booking>> GetBookingsByDate(DateTime startDate, DateTime endDate);
 }

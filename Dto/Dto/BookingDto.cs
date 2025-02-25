@@ -18,11 +18,18 @@ public class BookingDto
     public DateTime EndDate { get; set; }
 
     [EnumDataType(typeof(BookingStatus))]
-    public BookingStatus Status { get; set; }
     
-    public int Number { get; set; }
+    [Required] public BookingStatus Status { get; set; }
+    
+    [Required] public int Number { get; set; }
+    
     
     public bool IsValidDateRange() => StartDate < EndDate;
+
+    public BookingDto()
+    {
+        
+    }
 
 
     public BookingDto(Booking booking, int number)
@@ -32,7 +39,18 @@ public class BookingDto
         StartDate = booking.StartDate;
         Customers = booking.Customers;
         EndDate = booking.EndDate;
-        Status = booking.Status;
         Number = number;
+        Status = booking.Status;
     }
+    
+    public DateTime GetAvailableEndDate(List<BookingDto> allBookings)
+    {
+        var nextBooking = allBookings
+            .Where(b => b.StartDate > DateTime.Today)
+            .OrderBy(b => b.StartDate)
+            .FirstOrDefault();
+
+        return nextBooking != null ? nextBooking.StartDate.AddDays(-1) : DateTime.Today.AddMonths(1);
+    }
+
 }

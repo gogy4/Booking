@@ -1,6 +1,5 @@
 ﻿using Application.Services;
-using Dto;
-using Domain.Enums;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -18,24 +17,23 @@ public class BookingController(BookingServices bookingServices) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] BookingDto bookingDto)
+    public async Task<IActionResult> Create([FromBody] Booking booking)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState); 
         }
 
-        if (!bookingDto.IsValidDateRange())
+        if (!booking.IsValidateDates())
         {
             return BadRequest("Start date must be earlier than end date.");
         }
 
-        var booking = await bookingServices.CreateBooking(
-            bookingDto.RoomId, 
-            bookingDto.Customers, 
-            bookingDto.StartDate, 
-            bookingDto.EndDate, 
-            bookingDto.Status
+        var newBooking = await bookingServices.CreateBooking(
+            booking.RoomId, 
+            booking.Customers, 
+            booking.StartDate, 
+            booking.EndDate
         );
 
         return CreatedAtAction(nameof(GetById), new { id = booking.Id }, booking);
@@ -51,15 +49,15 @@ public class BookingController(BookingServices bookingServices) : ControllerBase
     }
 
     [HttpPatch("{id}/confirm-rental")]
-    public async Task<IActionResult> ConfirmRental(Guid id)
+    public async Task<IActionResult> ConfirmRental(Guid id, DateTime startDate, DateTime endDate)
     {
         var booking = await bookingServices.GetById(id);
-        await bookingServices.ConfirmRental(booking);
+        await bookingServices.ConfirmRental(booking, startDate, endDate);
         return NoContent();
     }
 
     [HttpPut("{id}/change-date")]
-    public async Task<IActionResult> ChangeDate(Guid id, [FromBody] ChangeDateDto dto)
+    public async Task<IActionResult> ChangeDate(Guid id, [FromBody] Booking dto)
     {
         var booking = await bookingServices.GetById(id);
         await bookingServices.ChangeDate(booking, dto.StartDate, dto.EndDate);
@@ -68,9 +66,9 @@ public class BookingController(BookingServices bookingServices) : ControllerBase
 
 
     [HttpGet("search-by-status")]
-    public async Task<IActionResult> GetBookings([FromQuery] BookingStatus status)
+    public async Task<IActionResult> GetBookings([FromQuery] DateTime startDate)
     {
-        var bookings = await bookingServices.GetBookings(status);
+        var bookings = await bookingServices.GetBookings(startDate);
         return Ok(bookings);
     }
 

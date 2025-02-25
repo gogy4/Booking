@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Domain.Entities.Room>
+
+@{
+    ViewData["Title"] = "Доступные комнаты";
+}
+
+<h2 class="text-center my-4">Доступные комнаты</h2>
+
+<div class="container">
+    @foreach (var room in Model)
+    {
+        <div class="card mb-3 w-100">
+            <div class="card-body">
+                <h5 class="card-title">Комната @room.Number</h5>
+                <p class="card-text">Цена: @room.PricePerNight ₽</p>
+                <a asp-controller="RentalView" asp-action="Index" asp-route-roomId="@room.Id" class="btn btn-primary">
+                    Арендовать
+                </a>
+            </div>
+        </div>
+    }
+</div>

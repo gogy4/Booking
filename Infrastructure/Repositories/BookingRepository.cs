@@ -12,13 +12,7 @@ public class BookingRepository(AppDbContext context) : IBookingRepository
     {
         return await context.Bookings.FindAsync(id);
     }
-
-    public async Task<List<Booking?>> GetByStatusAsync(BookingStatus status = BookingStatus.All)
-    {
-        if (status == BookingStatus.All) return await context.Bookings.ToListAsync();
-        return await context.Bookings.Where(x=> x.Status == status).ToListAsync();
-    }
-
+    
     public async Task UpdateAsync(Booking booking)
     {
         context.Bookings.Update(booking);
@@ -35,6 +29,12 @@ public class BookingRepository(AppDbContext context) : IBookingRepository
     {
         await context.Bookings.AddAsync(booking);
         await context.SaveChangesAsync();
+    }
+
+    public async Task<List<Booking>> GetAllAsync(DateTime startDate = default)
+    {
+        if (startDate == default) startDate = DateTime.Today;
+        return await context.Bookings.Where(x=>x.StartDate >= startDate || x.StartDate == default).ToListAsync();
     }
 
     public async Task<List<Booking>> GetBookingsByDate(DateTime startDate, DateTime endDate)

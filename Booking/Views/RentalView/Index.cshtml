@@ -1,19 +1,24 @@
-﻿@model Dto.BookingDto
+﻿@model Domain.Entities.Room
 
 @{
     ViewData["Title"] = "Выбор аренды";
+    var availableEndDate = TempData["AvailableEndDate"] as string ?? DateTime.Today.AddMonths(1).ToString("yyyy-MM-dd");
 }
 
 <h2>Аренда: @Model.Number</h2>
 
-<form method="post" asp-action="Rent" asp-route-id="@Model.Id">
+<form method="post" asp-action="Rent" asp-route-roomId="@Model.Id">
     <div class="form-group">
         <label for="startDate">Дата начала:</label>
-        <input type="date" id="startDate" name="startDate" class="form-control" required />
+        <input type="date" id="startDate" name="startDate" class="form-control"
+               required min="@DateTime.Today.ToString("yyyy-MM-dd")"
+               max="@availableEndDate" />
     </div>
     <div class="form-group">
         <label for="endDate">Дата окончания:</label>
-        <input type="date" id="endDate" name="endDate" class="form-control" required />
+        <input type="date" id="endDate" name="endDate" class="form-control"
+               required min="@DateTime.Today.ToString("yyyy-MM-dd")"
+               max="@availableEndDate" />
     </div>
 
     <button type="submit" class="btn btn-success">Забронировать</button>
@@ -26,19 +31,18 @@
         let startDateInput = document.getElementById("startDate");
         let endDateInput = document.getElementById("endDate");
 
-        // Получаем сегодняшнюю дату в формате YYYY-MM-DD
         let today = new Date().toISOString().split("T")[0];
+        let maxAvailableEndDate = "@availableEndDate";
 
-        // Устанавливаем минимальное значение для startDate и endDate
         startDateInput.min = today;
+        startDateInput.max = maxAvailableEndDate;
         endDateInput.min = today;
+        endDateInput.max = maxAvailableEndDate;
 
-        // При изменении startDate обновляем min для endDate
         startDateInput.addEventListener("change", function () {
             let startDateValue = startDateInput.value;
-            endDateInput.min = startDateValue; // Запрещаем выбор endDate раньше startDate
+            endDateInput.min = startDateValue;
 
-            // Если endDate уже выбрана и меньше startDate, сбрасываем её
             if (endDateInput.value < startDateValue) {
                 endDateInput.value = "";
             }

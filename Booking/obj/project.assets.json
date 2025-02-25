@@ -1448,7 +1448,6 @@
         "dependencies": {
           "Application": "1.0.0",
           "Domain": "1.0.0",
-          "Dto": "1.0.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.3.0",
           "Microsoft.EntityFrameworkCore": "9.0.2"
         },
@@ -1480,19 +1479,6 @@
         },
         "runtime": {
           "bin/placeholder/Domain.dll": {}
-        }
-      },
-      "Dto/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v9.0",
-        "dependencies": {
-          "Domain": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Dto.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Dto.dll": {}
         }
       },
       "Infrastructure/1.0.0": {
@@ -4164,11 +4150,6 @@
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
     },
-    "Dto/1.0.0": {
-      "type": "project",
-      "path": "../Dto/Dto.csproj",
-      "msbuildProject": "../Dto/Dto.csproj"
-    },
     "Infrastructure/1.0.0": {
       "type": "project",
       "path": "../Infrastructure/Infrastructure.csproj",
@@ -4179,7 +4160,6 @@
     "net9.0": [
       "API >= 1.0.0",
       "Application >= 1.0.0",
-      "Dto >= 1.0.0",
       "Infrastructure >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 9.0.2",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.2",
@@ -4220,9 +4200,6 @@
             },
             "D:\\Rider Projects\\Booking\\Booking\\Application\\Application.csproj": {
               "projectPath": "D:\\Rider Projects\\Booking\\Booking\\Application\\Application.csproj"
-            },
-            "D:\\Rider Projects\\Booking\\Booking\\Dto\\Dto.csproj": {
-              "projectPath": "D:\\Rider Projects\\Booking\\Booking\\Dto\\Dto.csproj"
             },
             "D:\\Rider Projects\\Booking\\Booking\\Infrastructure\\Infrastructure.csproj": {
               "projectPath": "D:\\Rider Projects\\Booking\\Booking\\Infrastructure\\Infrastructure.csproj"

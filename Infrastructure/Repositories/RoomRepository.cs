@@ -13,23 +13,15 @@ public class RoomRepository(AppDbContext context) : IRoomRepository
         return await context.Rooms.FindAsync(id);
     }
 
-    public async Task<List<Room?>> GetByStatusAsync(RoomStatus status = RoomStatus.All)
+    public Task<List<Room>> GetAllAsync()
     {
-        if (status == RoomStatus.All) return await context.Rooms.ToListAsync();
-        return await context.Rooms.Where(r => r.Status == status).ToListAsync();
+        return context.Rooms.ToListAsync();
     }
 
-    public async Task<List<Room?>> GetByTypeAsync(RoomType roomType = RoomType.All)
+    public async Task DeleteAsync(Room room)
     {
-        if (roomType == RoomType.All) return await context.Rooms.ToListAsync();
-        return await context.Rooms.Where(r => r.RoomType == roomType).ToListAsync();
-    }
-
-    public async Task DeleteAsync(Guid id)
-    {
-        var booking = await GetByIdAsync(id);
-        if (booking is null) return;
-        context.Rooms.Remove(booking);
+        if (room is null) return;
+        context.Rooms.Remove(room);
         await context.SaveChangesAsync();
     }
 

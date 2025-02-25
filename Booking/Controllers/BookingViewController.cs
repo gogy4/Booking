@@ -1,20 +1,20 @@
 ﻿using Application.Services;
-using Dto;
 using Microsoft.AspNetCore.Mvc;
+using EntityBooking = Domain.Entities.Booking;
+
 
 namespace Booking.Controllers;
 
 public class BookingViewController(BookingServices bookingServices, RoomServices roomServices) : Controller
 {
-    [Route("")]
     [HttpGet]
     public async Task<IActionResult> Index()
     {
         var bookings = await bookingServices.GetBookings();
-        var bookingsDto = new List<BookingDto>();
+        var bookingsDto = new List<EntityBooking>();
         foreach (var booking in bookings)
         {
-            var dto = new BookingDto(booking, await bookingServices.GetRoomNumber(booking));
+            var dto = new EntityBooking(booking);
             bookingsDto.Add(dto);
         }
         
@@ -25,6 +25,6 @@ public class BookingViewController(BookingServices bookingServices, RoomServices
     {
         var booking = await bookingServices.GetById(id);
         if (booking is null) return NotFound();
-        return View(new BookingDto(booking, await bookingServices.GetRoomNumber(booking)));
+        return View(new EntityBooking(booking));
     }
 }

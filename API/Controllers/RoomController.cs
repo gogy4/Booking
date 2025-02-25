@@ -1,5 +1,5 @@
 ﻿using Application.Services;
-using Dto;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -17,7 +17,7 @@ public class RoomController(RoomServices roomServices) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] RoomDto roomDto) // Используем DTO
+    public async Task<IActionResult> Create([FromBody] Room roomDto) 
     {
         var room = await roomServices.CreateRoom(roomDto.Number, roomDto.Customers, roomDto.RoomType, roomDto.PricePerNight);
         return CreatedAtAction(nameof(GetById), new { id = room.Id }, room);
@@ -26,35 +26,40 @@ public class RoomController(RoomServices roomServices) : ControllerBase
     [HttpPatch("{id}/cancel-rental")]
     public async Task<IActionResult> CancelRental(Guid id)
     {
-        await roomServices.CancelRental(id);
+        var room = await roomServices.GetById(id);
+        await roomServices.CancelRental(room);
         return NoContent();
     }
     
     [HttpPatch("{id}/populate-room")]
     public async Task<IActionResult> PopulateRoom(Guid id)
     {
-        await roomServices.PopulateRoom(id);
+        var room = await roomServices.GetById(id);
+        await roomServices.PopulateRoom(room);
         return NoContent();
     }
     
     [HttpPatch("{id}/clean-room")]
     public async Task<IActionResult> CleanRoom(Guid id)
     {
-        await roomServices.CleanRoom(id);
+        var room = await roomServices.GetById(id);
+        await roomServices.CleanRoom(room);
         return NoContent();
     }
         
     [HttpPatch("{id}/set-free-room")]
     public async Task<IActionResult> SetFreeRoom(Guid id)
     {
-        await roomServices.SetFreeRoom(id);
+        var room = await roomServices.GetById(id);
+        await roomServices.SetFreeRoom(room);
         return NoContent();
     } 
     
     [HttpPatch("{id}/change-price")]
-    public async Task<IActionResult> ChangePricePerNight(Guid id, [FromBody] ChangePriceDto priceDto) // Исправлено
+    public async Task<IActionResult> ChangePricePerNight(Guid id, [FromBody] int newPrice) 
     {
-        await roomServices.ChangePricePerNight(id, priceDto.NewPrice);
+        var room = await roomServices.GetById(id);
+        await roomServices.ChangePricePerNight(room, newPrice);
         return NoContent();
     } 
 }

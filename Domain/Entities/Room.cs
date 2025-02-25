@@ -25,9 +25,18 @@ public class Room
         RoomType = roomType;
     }
 
+    public Room(Room room)
+    {
+        Id = Guid.NewGuid();
+        Number = room.Number;
+        Customers = new List<Guid>(room.Customers);
+        Status = room.Status;
+        PricePerNight = room.PricePerNight;
+        RoomType = room.RoomType;
+    }
+
     public void CancelRental()
     {
-        if (Status != RoomStatus.Rental) throw new ArgumentException("Invalid status");
         Status = RoomStatus.Free;
     }
 

@@ -1,5 +1,5 @@
 ﻿@using Domain.Enums
-@model List<Dto.BookingDto>
+@model List<Domain.Entities.Booking>
 
 @{
     ViewData["Title"] = "Список бронирований";
@@ -21,24 +21,20 @@
     @foreach (var booking in Model)
     {
         <tr>
-            <td>@booking.Number</td>
-            @if (booking.Status != BookingStatus.Booked)
+            @if (booking.Status == BookingStatus.Free)
             {
-                <td>-</td>
-                <td>-</td>
+                <td>@DateTime.Today.ToShortDateString()</td> 
                 <td>@booking.Status</td>
 
                 <td>
                     <a href="@Url.Action("Details", new { id = booking.Id })" class="btn btn-info">Подробнее</a>
-                    <a href="@Url.Action("Index", "RoomView", new { id = booking.RoomId })" class="btn btn-secondary">Информация
-                        о комнате</a>
+                    <a href="@Url.Action("Index", "RoomView", new { id = booking.RoomId })" class="btn btn-secondary">Информация о комнате</a>
                     <form method="get" asp-action="Index" asp-controller="RentalView" asp-route-id="@booking.Id">
                         <button type="submit" class="btn btn-success">Арендовать</button>
                     </form>
-
                 </td>
             }
-            @if (booking.Status != BookingStatus.Free)
+            else
             {
                 <td>@booking.StartDate.ToShortDateString()</td>
                 <td>@booking.EndDate.ToShortDateString()</td>
@@ -46,12 +42,10 @@
 
                 <td>
                     <a href="@Url.Action("Details", new { id = booking.Id })" class="btn btn-info">Подробнее</a>
-                    <a href="@Url.Action("Index", "RoomView", new { id = booking.RoomId })" class="btn btn-secondary">Информация
-                        о комнате</a>
+                    <a href="@Url.Action("Index", "RoomView", new { id = booking.RoomId })" class="btn btn-secondary">Информация о комнате</a>
                     <form method="post" asp-action="CancelRental" asp-controller="RentalView" asp-route-id="@booking.Id">
                         <button type="submit" class="btn btn-danger">Отменить аренду</button>
                     </form>
-
                 </td>
             }
         </tr>

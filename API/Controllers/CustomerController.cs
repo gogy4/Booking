@@ -1,5 +1,5 @@
 ﻿using Application.Services;
-using Dto;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -9,7 +9,7 @@ namespace API.Controllers;
 public class CustomerController(CustomerServices customerServices) : ControllerBase
 {
     [HttpPost]
-    public async Task<ActionResult> CreateCustomer([FromBody] CreateCustomerDto customerDto)
+    public async Task<ActionResult> CreateCustomer([FromBody] Customer customerDto)
     {
         var customer = await customerServices.CreateCustomer(customerDto.FirstName, customerDto.LastName, customerDto.Email,
             customerDto.PhoneNumber);

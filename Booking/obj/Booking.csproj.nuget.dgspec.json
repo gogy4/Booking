@@ -31,9 +31,6 @@
               },
               "D:\\Rider Projects\\Booking\\Booking\\Domain\\Domain.csproj": {
                 "projectPath": "D:\\Rider Projects\\Booking\\Booking\\Domain\\Domain.csproj"
-              },
-              "D:\\Rider Projects\\Booking\\Booking\\Dto\\Dto.csproj": {
-                "projectPath": "D:\\Rider Projects\\Booking\\Booking\\Dto\\Dto.csproj"
               }
             }
           }
@@ -174,9 +171,6 @@
               "D:\\Rider Projects\\Booking\\Booking\\Application\\Application.csproj": {
                 "projectPath": "D:\\Rider Projects\\Booking\\Booking\\Application\\Application.csproj"
               },
-              "D:\\Rider Projects\\Booking\\Booking\\Dto\\Dto.csproj": {
-                "projectPath": "D:\\Rider Projects\\Booking\\Booking\\Dto\\Dto.csproj"
-              },
               "D:\\Rider Projects\\Booking\\Booking\\Infrastructure\\Infrastructure.csproj": {
                 "projectPath": "D:\\Rider Projects\\Booking\\Booking\\Infrastructure\\Infrastructure.csproj"
               }
@@ -275,69 +269,6 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
-      },
-      "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "D:\\Rider Projects\\Booking\\Booking\\Dto\\Dto.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\Rider Projects\\Booking\\Booking\\Dto\\Dto.csproj",
-        "projectName": "Dto",
-        "projectPath": "D:\\Rider Projects\\Booking\\Booking\\Dto\\Dto.csproj",
-        "packagesPath": "C:\\Users\\dan4i\\.nuget\\packages\\",
-        "outputPath": "D:\\Rider Projects\\Booking\\Booking\\Dto\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\dan4i\\AppData\\Roaming\\NuGet\\NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net9.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
-            "projectReferences": {
-              "D:\\Rider Projects\\Booking\\Booking\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\Rider Projects\\Booking\\Booking\\Domain\\Domain.csproj"
-              }
-            }
           }
         },
         "warningProperties": {
