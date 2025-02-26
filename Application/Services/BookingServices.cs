@@ -6,17 +6,14 @@ namespace Application.Services;
 
 public class BookingServices(
     IBookingRepository bookingRepository,
-    IRoomRepository roomRepository,
     ICustomerRepository customerRepository)
 {
-    public async Task<Booking> CreateBooking(Guid roomId, List<Guid> customerIds, DateTime startDate, DateTime endDate)
+    public async Task<Booking> CreateBooking(List<Guid> customerIds, DateTime startDate, DateTime endDate)
     {
-        var room = new Room(await roomRepository.GetByIdAsync(roomId));
-        if (room is null) throw new NullReferenceException("Room not found");
         var customers = await customerRepository.GetCustomersAsync(customerIds);
         if (customers is null) throw new NullReferenceException("Customers not found");
         if (startDate >= endDate) throw new ArgumentException("Start date cannot be earlier than end date");
-        var booking = new Booking(roomId, customerIds, startDate, endDate);
+        var booking = new Booking(customerIds, startDate, endDate);
         await bookingRepository.AddAsync(booking);
         return booking;
     }
@@ -49,8 +46,8 @@ public class BookingServices(
 
         return nextBooking != null ? nextBooking.StartDate.AddDays(-1) : DateTime.Today.AddMonths(1);
     }
-    
-    public async Task<bool> IsDateAvailable(DateTime startDate, DateTime endDate)
+
+    private async Task<bool> IsDateAvailable(DateTime startDate, DateTime endDate)
     {
         var allBookings = await bookingRepository.GetAllAsync();
 
@@ -92,13 +89,6 @@ public class BookingServices(
     {
         if (!await IsDateAvailable(newStartDate, newEndDate)) throw new InvalidDataException("Those dates are already taken");
         await ChangeData(booking, x => booking.ChangeDate(newStartDate, newEndDate));
-    }
-
-    public async Task<int> GetRoomNumber(Booking booking)
-    {
-        var room = await roomRepository.GetByIdAsync(booking.RoomId);
-        if (room is null) throw new NullReferenceException("Room not found");
-        return room.Number;
     }
 
     private async Task ChangeData(Booking booking, Action<Booking> changeBookingData)

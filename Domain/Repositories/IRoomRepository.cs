@@ -10,4 +10,6 @@ public interface IRoomRepository
     Task DeleteAsync(Room room);
     Task AddAsync(Room room);
     Task UpdateAsync(Room room);
+    Task AddBookingAsync(Room room, Guid booking);
+    Task<bool> HaveRoomAsync(Room room);
 }

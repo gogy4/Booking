@@ -4,18 +4,40 @@ using Infrastructure.Interfaces;
 
 namespace Application.Services;
 
-public class RoomServices(IRoomRepository roomRepository, IBookingRepository bookingRepository, ICustomerRepository customerRepository)
+public class RoomServices(IRoomRepository roomRepository, BookingServices bookingServices, ICustomerRepository customerRepository)
 {
-    public async Task<Room> CreateRoom(int number, List<Guid> customerId, RoomType roomType, int pricePerNight)
+    public async Task<Room> CreateRoom(int number, List<Guid> customers, RoomType roomType, int pricePerNight)
     {
-        var room = new Room(number, customerId, roomType, pricePerNight);
+        var room = new Room(number, new List<Guid>(), customers, pricePerNight, roomType);
         await roomRepository.AddAsync(room);
         return room;
     }
-
     public async Task<List<Room>> GetAll()
     {
         return await roomRepository.GetAllAsync();
+    }
+
+    public async Task<List<string>> GetBookingDates(Room room)
+    {
+        var bookings = await GetBookings(room);
+        var bookedDates = bookings
+            .SelectMany(b => Enumerable.Range(0, (b.EndDate - b.StartDate).Days + 1)
+                .Select(offset => b.StartDate.AddDays(offset).ToString("yyyy-MM-dd")))
+            .ToList();
+        
+        return bookedDates;
+    }
+
+    private async Task<List<Booking>> GetBookings(Room room)
+    {
+        var ids = room.BookingId;
+        var bookings = new List<Booking>();
+        foreach (var id in ids)
+        {
+            bookings.Add(await bookingServices.GetById(id));
+        }
+        
+        return bookings;
     }
 
     public async Task<Room?> GetById(Guid roomId)
@@ -28,10 +50,15 @@ public class RoomServices(IRoomRepository roomRepository, IBookingRepository boo
         await ChangeDataRoom(room, r => room.CancelRental());
     }
 
-    public async Task ConfirmRental(Room room)
+    public async Task ConfirmRental(Room room, DateTime startDate, DateTime endDate)
     {
         await ChangeDataRoom(room, r => room.RentalRoom());
-        await roomRepository.AddAsync(room);
+        if (!await roomRepository.HaveRoomAsync(room))
+        {
+            await roomRepository.AddAsync(room);
+        }
+        var booking = await bookingServices.CreateBooking(room.Customers, startDate, endDate);
+        await roomRepository.AddBookingAsync(room, booking.Id);
     }
 
     public async Task PopulateRoom(Room room)

@@ -30,7 +30,6 @@ public class BookingController(BookingServices bookingServices) : ControllerBase
         }
 
         var newBooking = await bookingServices.CreateBooking(
-            booking.RoomId, 
             booking.Customers, 
             booking.StartDate, 
             booking.EndDate

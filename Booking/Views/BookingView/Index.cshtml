@@ -28,7 +28,6 @@
 
                 <td>
                     <a href="@Url.Action("Details", new { id = booking.Id })" class="btn btn-info">Подробнее</a>
-                    <a href="@Url.Action("Index", "RoomView", new { id = booking.RoomId })" class="btn btn-secondary">Информация о комнате</a>
                     <form method="get" asp-action="Index" asp-controller="RentalView" asp-route-id="@booking.Id">
                         <button type="submit" class="btn btn-success">Арендовать</button>
                     </form>
@@ -42,7 +41,6 @@
 
                 <td>
                     <a href="@Url.Action("Details", new { id = booking.Id })" class="btn btn-info">Подробнее</a>
-                    <a href="@Url.Action("Index", "RoomView", new { id = booking.RoomId })" class="btn btn-secondary">Информация о комнате</a>
                     <form method="post" asp-action="CancelRental" asp-controller="RentalView" asp-route-id="@booking.Id">
                         <button type="submit" class="btn btn-danger">Отменить аренду</button>
                     </form>

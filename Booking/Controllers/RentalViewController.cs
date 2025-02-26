@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Booking.Controllers;
 
-public class RentalViewController(BookingServices bookingServices, RoomServices roomServices) : Controller
+public class RentalViewController(RoomServices roomServices) : Controller
 {
     [Route("rental-{roomId}")]
     [HttpGet]
@@ -12,19 +12,20 @@ public class RentalViewController(BookingServices bookingServices, RoomServices 
     {
         var room = await roomServices.GetById(roomId);
         if (room == null) return NotFound("Комната не найдена");
+
+        var dates = await roomServices.GetBookingDates(room);
+        ViewBag.BookedDates = dates;
         return View(room);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Rent(Guid roomId, DateTime startDate, DateTime endDate, List<Guid> customers)
+    public async Task<IActionResult> Rent(Guid roomId, DateTime startDate, DateTime endDate)
     {
         try
         {
             var room = await roomServices.GetById(roomId);
             if (room is null) return NotFound("Room not found");
-            var booking = await bookingServices.CreateBooking(roomId, customers, startDate, endDate);
-            
-            await roomServices.ConfirmRental(room);
+            await roomServices.ConfirmRental(room, startDate, endDate);
             return RedirectToAction("Index");
         }
         catch (ArgumentException e)

@@ -36,4 +36,15 @@ public class RoomRepository(AppDbContext context) : IRoomRepository
         context.Rooms.Update(room);
         await context.SaveChangesAsync();
     }
+
+    public async Task AddBookingAsync(Room room, Guid booking)
+    {
+        room.AddBooking(booking);
+        await UpdateAsync(room);
+    }
+
+    public async Task<bool> HaveRoomAsync(Room room)
+    {
+        return await context.Rooms.ContainsAsync(room);
+    }
 }

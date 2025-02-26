@@ -1,4 +1,4 @@
-﻿using Application.Services;
+﻿/*using Application.Services;
 using EntityBooking = Domain.Entities.Booking;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,13 +10,19 @@ public class ProfileViewController(BookingServices bookingServices, RoomServices
     [HttpGet]
     public async Task<ActionResult> Index(Guid id)
     {
-        var booking = await bookingServices.GetById(id);
-        if (booking == null) return NotFound("Не найдено объявление");
-        var room = await roomServices.GetById(booking.RoomId); 
+        var room = await roomServices.GetById(id);
         if (room == null)
         {
             return NotFound("Комната не найдена");
         }
+
+        var bookings = room.BookingId;
+        var currentBookingId = Guid.Empty;
+        if (bookings != null) currentBookingId = bookings[0];
+        if (currentBookingId == Guid.Empty) return NotFound("Не найдено аренды");
+        var booking = await bookingServices.GetById(currentBookingId);
+        if (booking == null) return NotFound("Не найдено аренды");
+
         var availableEndDate = await bookingServices.GetAvailableEndDate(id);
         TempData["AvailableEndDate"] = availableEndDate.ToString("yyyy-MM-dd");
         return View(new EntityBooking(booking)); 
@@ -40,4 +46,4 @@ public class ProfileViewController(BookingServices bookingServices, RoomServices
             return RedirectToAction(nameof(Index), "BookingView");
         }
     }
-}
+}*/

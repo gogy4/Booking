@@ -2,7 +2,9 @@
 
 @{
     ViewData["Title"] = "Выбор аренды";
-    var availableEndDate = TempData["AvailableEndDate"] as string ?? DateTime.Today.AddMonths(1).ToString("yyyy-MM-dd");
+    var today = DateTime.Today;
+    var maxEndDate = today.AddMonths(12).ToString("yyyy-MM-dd");
+    var availableEndDate = TempData["AvailableEndDate"] as string ?? maxEndDate;
 }
 
 <h2>Аренда: @Model.Number</h2>
@@ -11,13 +13,13 @@
     <div class="form-group">
         <label for="startDate">Дата начала:</label>
         <input type="date" id="startDate" name="startDate" class="form-control"
-               required min="@DateTime.Today.ToString("yyyy-MM-dd")"
+               required min="@today.ToString("yyyy-MM-dd")"
                max="@availableEndDate" />
     </div>
     <div class="form-group">
         <label for="endDate">Дата окончания:</label>
         <input type="date" id="endDate" name="endDate" class="form-control"
-               required min="@DateTime.Today.ToString("yyyy-MM-dd")"
+               required min="@today.ToString("yyyy-MM-dd")"
                max="@availableEndDate" />
     </div>
 
@@ -38,6 +40,49 @@
         startDateInput.max = maxAvailableEndDate;
         endDateInput.min = today;
         endDateInput.max = maxAvailableEndDate;
+
+        let bookedDates = @Html.Raw(Json.Serialize(ViewBag.BookedDates));
+
+        function disableBookedDates(input) {
+            let blockedDatesSet = new Set(bookedDates);
+
+            input.addEventListener("input", function () {
+                if (blockedDatesSet.has(input.value)) {
+                    alert("Эта дата уже забронирована! Выберите другую.");
+                    input.value = "";
+                }
+            });
+        }
+
+        function disableBookedDatesOnCalendar(input) {
+            let blockedDatesSet = new Set(bookedDates);
+
+            input.addEventListener("focus", function () {
+                let picker = input;
+                let minDate = new Date(picker.min);
+                let maxDate = new Date(picker.max);
+
+                let dateList = [];
+                for (let d = new Date(minDate); d <= maxDate; d.setDate(d.getDate() + 1)) {
+                    let formattedDate = d.toISOString().split("T")[0];
+                    if (blockedDatesSet.has(formattedDate)) {
+                        dateList.push(formattedDate);
+                    }
+                }
+
+                picker.addEventListener("change", function () {
+                    if (dateList.includes(picker.value)) {
+                        alert("Эта дата недоступна. Выберите другую.");
+                        picker.value = "";
+                    }
+                });
+            });
+        }
+
+        disableBookedDates(startDateInput);
+        disableBookedDates(endDateInput);
+        disableBookedDatesOnCalendar(startDateInput);
+        disableBookedDatesOnCalendar(endDateInput);
 
         startDateInput.addEventListener("change", function () {
             let startDateValue = startDateInput.value;

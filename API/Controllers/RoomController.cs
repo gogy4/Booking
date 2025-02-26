@@ -22,6 +22,14 @@ public class RoomController(RoomServices roomServices) : ControllerBase
         var room = await roomServices.CreateRoom(roomDto.Number, roomDto.Customers, roomDto.RoomType, roomDto.PricePerNight);
         return CreatedAtAction(nameof(GetById), new { id = room.Id }, room);
     }
+    
+    [HttpPatch("{id}/confirm-rental")]
+    public async Task<IActionResult> ConfirmRental(Guid id, DateTime startDate, DateTime endDate)
+    {
+        var room = await roomServices.GetById(id);
+        await roomServices.ConfirmRental(room, startDate, endDate);
+        return NoContent();
+    }
 
     [HttpPatch("{id}/cancel-rental")]
     public async Task<IActionResult> CancelRental(Guid id)

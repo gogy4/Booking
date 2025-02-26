@@ -35,9 +35,6 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<Guid>("RoomId")
-                        .HasColumnType("char(36)");
-
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime(6)");
 
@@ -81,6 +78,10 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.PrimitiveCollection<string>("BookingId")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.PrimitiveCollection<string>("Customers")
                         .IsRequired()
