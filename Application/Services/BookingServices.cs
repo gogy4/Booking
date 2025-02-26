@@ -17,6 +17,7 @@ public class BookingServices(
         await bookingRepository.AddAsync(booking);
         return booking;
     }
+    
 
     public async Task<List<Booking>> GetBookings(DateTime startDate = default)
     {
@@ -35,34 +36,18 @@ public class BookingServices(
         return await bookingRepository.GetBookingsByDate(startDate, endDate);
     }
     
-    public async Task<DateTime> GetAvailableEndDate(Guid id)
-    {
-        var allBookings = await bookingRepository.GetAllAsync();
-    
-        var nextBooking = allBookings
-            .Where(b => b.StartDate > DateTime.Today)
-            .OrderBy(b => b.StartDate)
-            .FirstOrDefault();
 
-        return nextBooking != null ? nextBooking.StartDate.AddDays(-1) : DateTime.Today.AddMonths(1);
-    }
-
-    private async Task<bool> IsDateAvailable(DateTime startDate, DateTime endDate)
+    public async Task<bool> IsDateAvailable(List<Booking> allBookings, DateTime startDate, DateTime? endDate = null)
     {
-        var allBookings = await bookingRepository.GetAllAsync();
+        endDate ??= startDate; 
 
         return !allBookings.Any(b =>
-            (startDate >= b.StartDate && startDate < b.EndDate) ||
-            (endDate > b.StartDate && endDate <= b.EndDate) ||
-            (startDate <= b.StartDate && endDate >= b.EndDate)
+                (startDate >= b.StartDate && startDate < b.EndDate.AddDays(1)) || 
+                (endDate.Value > b.StartDate.AddDays(-1) && endDate.Value <= b.EndDate) |
+                (startDate <= b.StartDate && endDate.Value >= b.EndDate) 
         );
     }
-
-    public async Task<List<Booking>> SearchBookings(DateTime startDate, DateTime endDate)
-    {
-        return await bookingRepository.GetBookingsByDate(startDate, endDate);
-    }
-
+    
     public async Task DeleteBooking(Booking booking)
     {
         await bookingRepository.DeleteAsync(booking);
@@ -87,7 +72,7 @@ public class BookingServices(
 
     public async Task ChangeDate(Booking booking, DateTime newStartDate, DateTime newEndDate)
     {
-        if (!await IsDateAvailable(newStartDate, newEndDate)) throw new InvalidDataException("Those dates are already taken");
+        if (!await IsDateAvailable(await bookingRepository.GetAllAsync(), newStartDate, newEndDate)) throw new InvalidDataException("Those dates are already taken");
         await ChangeData(booking, x => booking.ChangeDate(newStartDate, newEndDate));
     }
 

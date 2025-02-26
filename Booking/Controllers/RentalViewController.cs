@@ -26,7 +26,7 @@ public class RentalViewController(RoomServices roomServices) : Controller
             var room = await roomServices.GetById(roomId);
             if (room is null) return NotFound("Room not found");
             await roomServices.ConfirmRental(room, startDate, endDate);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "HomeView");
         }
         catch (ArgumentException e)
         {

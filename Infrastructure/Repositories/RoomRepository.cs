@@ -47,4 +47,5 @@ public class RoomRepository(AppDbContext context) : IRoomRepository
     {
         return await context.Rooms.ContainsAsync(room);
     }
+    
 }
