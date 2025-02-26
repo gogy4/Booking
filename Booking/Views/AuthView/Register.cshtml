@@ -1,0 +1,26 @@
+﻿@model Domain.Entities.Customer
+
+<form method="post">
+    <div>
+        <label>Имя</label>
+        <input type="text" name="firstName" required />
+    </div>
+    <div>
+        <label>Фамилия</label>
+        <input type="text" name="lastName" required />
+    </div>
+    <div>
+        <label>Телефон</label>
+        <input type="tel" name="phoneNumber" required />
+    </div>
+    <div>
+        <label>Email</label>
+        <input type="email" name="email" required />
+    </div>
+    <div>
+        <label>Пароль</label>
+        <input type="password" name="password" required />
+    </div>
+    <button type="submit">Зарегистрироваться</button>
+</form>
+<a href="/AuthView/Login">Войти</a>

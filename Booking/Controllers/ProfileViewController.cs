@@ -1,49 +1,60 @@
-﻿/*using Application.Services;
-using EntityBooking = Domain.Entities.Booking;
+﻿using Application.Services;
+using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
-namespace Booking.Controllers;
-
-public class ProfileViewController(BookingServices bookingServices, RoomServices roomServices) : Controller
+[Authorize] 
+public class ProfileViewController(CustomerServices customerServices, BookingServices bookingServices, RentalService rentalService) : Controller
 {
-    
     [HttpGet]
-    public async Task<ActionResult> Index(Guid id)
+    public async Task<IActionResult> Index()
     {
-        var room = await roomServices.GetById(id);
-        if (room == null)
+        var userId = User.FindFirstValue("CustomerId"); 
+
+        if (userId == null)
         {
-            return NotFound("Комната не найдена");
+            return Unauthorized();
         }
 
-        var bookings = room.BookingId;
-        var currentBookingId = Guid.Empty;
-        if (bookings != null) currentBookingId = bookings[0];
-        if (currentBookingId == Guid.Empty) return NotFound("Не найдено аренды");
-        var booking = await bookingServices.GetById(currentBookingId);
-        if (booking == null) return NotFound("Не найдено аренды");
+        var customer = await customerServices.GetById(Guid.Parse(userId));
 
-        var availableEndDate = await bookingServices.GetAvailableEndDate(id);
-        TempData["AvailableEndDate"] = availableEndDate.ToString("yyyy-MM-dd");
-        return View(new EntityBooking(booking)); 
+        if (customer == null)
+        {
+            return NotFound("Пользователь не найден");
+        }
+
+        var bookings = new List<Domain.Entities.Booking>();
+
+        foreach (var bookingId in customer.BookingIds)
+        {
+            var booking = await bookingServices.GetById(bookingId);
+            if (booking != null)
+            {
+                bookings.Add(booking);
+            }
+        }
+
+        ViewBag.Message = TempData["Message"];
+
+        return View(bookings);
     }
     
-
-
     [HttpPost]
-    public async Task<IActionResult> CancelRental(Guid id)
+    public async Task<IActionResult> CancelRent(Guid bookingId)
     {
+        var userId = User.FindFirstValue("CustomerId");
+        
         try
         {
-            var booking = await bookingServices.GetById(id);
-            var room = await roomServices.GetById(booking.RoomId);
-            await roomServices.CancelRental(room);
-            await bookingServices.CancelRental(booking);
-            return Ok("Вы успешно отменили аренду");
+            await rentalService.CancelRental(Guid.Parse(userId), bookingId);
+            TempData["Message"] = "Аренда успешно отменена!";
         }
-        catch (ArgumentException e)
+        catch (Exception ex)
         {
-            return RedirectToAction(nameof(Index), "BookingView");
+            TempData["Message"] = ex.Message; 
         }
+
+        return RedirectToAction("Index");
     }
-}*/
+}

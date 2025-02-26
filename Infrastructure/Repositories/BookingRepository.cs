@@ -1,26 +1,28 @@
 ﻿using Domain.Entities;
 using Domain.Enums;
+using Domain.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class BookingRepository(AppDbContext context) : IBookingRepository
+public class BookingRepository(AppDbContext context) : IBookingRepository, IRepository<Booking>
 {
     public async Task<Booking?> GetByIdAsync(Guid id)
     {
         return await context.Bookings.FindAsync(id);
     }
     
-    public async Task UpdateAsync(Booking booking)
+    public async Task UpdateAsync(IEntity booking)
     {
-        context.Bookings.Update(booking);
+        context.Bookings.Update(booking as Booking);
         await context.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(Booking booking)
+    public async Task DeleteBooking(IEntity entity, Guid bookingId)
     {
+        var booking = await GetByIdAsync(bookingId);
         context.Bookings.Remove(booking);
         await context.SaveChangesAsync();
     }

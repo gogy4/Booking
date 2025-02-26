@@ -1,15 +1,15 @@
 ﻿using System.Text.Json.Serialization;
 using Domain.Enums;
+using Domain.Interfaces;
 
 namespace Domain.Entities;
 
-public class Room
+public class Room : IEntity
 {
     public Guid Id { get; private set; }
     public List<Guid> BookingId { get; private set; }
     public RoomStatus Status { get; private set; }
     public int Number { get; private set; }
-    public List<Guid> Customers { get; private set; }
     public int PricePerNight { get; private set; }
     public RoomType RoomType { get; private set; }
 
@@ -18,13 +18,12 @@ public class Room
     }
     
     [JsonConstructor]
-    public Room(int number, List<Guid> bookingId, List<Guid> customers, int pricePerNight, RoomType roomType)
+    public Room(int number, List<Guid> bookingId, int pricePerNight, RoomType roomType)
     {
         Id = Guid.NewGuid();
         Number = number;
-        BookingId = bookingId ?? new List<Guid>(); 
+        BookingId = bookingId;
         Status = RoomStatus.Free;
-        Customers = customers ?? new List<Guid>();
         PricePerNight = pricePerNight;
         RoomType = roomType;
     }
@@ -40,7 +39,6 @@ public class Room
         Id = Guid.NewGuid();
         BookingId = room.BookingId;
         Number = room.Number;
-        Customers = new List<Guid>(room.Customers);
         Status = room.Status;
         PricePerNight = room.PricePerNight;
         RoomType = room.RoomType;

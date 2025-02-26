@@ -5,9 +5,10 @@ namespace Application.Services;
 
 public class CustomerServices(ICustomerRepository customerRepository)
 {
-    public async Task<Customer> CreateCustomer(string firstName, string lastName, string email, string phoneNumber)
+    public async Task<Customer> CreateCustomer(string firstName, string lastName, string email, string phoneNumber,
+        string password)
     {
-        var customer = new Customer(firstName, lastName, email, phoneNumber);
+        var customer = new Customer(firstName, lastName, phoneNumber, email, password);
         await customerRepository.AddAsync(customer);
         return customer;
     }
@@ -16,7 +17,7 @@ public class CustomerServices(ICustomerRepository customerRepository)
     {
         return await customerRepository.GetByIdAsync(id);
     }
-    
+
     public async Task ChangeFirstName(Guid customerId, string firstName)
     {
         await ChangeData(customerId, customer => customer.ChangeFirstName(firstName));
@@ -35,6 +36,21 @@ public class CustomerServices(ICustomerRepository customerRepository)
     public async Task ChangePhoneNumber(Guid customerId, string phoneNumber)
     {
         await ChangeData(customerId, customer => customer.ChangePhoneNumber(phoneNumber));
+    }
+
+    public async Task AddBooking(Guid customerId, Guid bookingId)
+    {
+        await ChangeData(customerId, customer => customer.AddBooking(bookingId));
+    }
+
+    public async Task RemoveBooking(Guid customerId, Guid bookingId)
+    {
+        await ChangeData(customerId, customer => customer.RemoveBooking(bookingId));
+    }
+
+    public async Task<Customer> GetByEmail(string email)
+    {
+        return await customerRepository.GetByEmail(email);
     }
 
 

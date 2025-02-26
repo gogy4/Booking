@@ -2,21 +2,34 @@
 
 @{
     ViewData["Title"] = "Доступные комнаты";
+    var isAuthenticated = User.Identity?.IsAuthenticated ?? false;
 }
 
 <h2 class="text-center my-4">Доступные комнаты</h2>
 
-<!-- Форма поиска по датам -->
+<div class="d-flex justify-content-end mb-3">
+    @if (isAuthenticated)
+    {
+        <a asp-controller="ProfileView" asp-action="Index" class="btn btn-primary me-2">Профиль</a>
+        <a asp-controller="AuthView" asp-action="Logout" class="btn btn-danger">Выйти</a>
+    }
+    else
+    {
+        <a asp-controller="AuthView" asp-action="Login" class="btn btn-outline-primary me-2">Войти</a>
+        <a asp-controller="AuthView" asp-action="Register" class="btn btn-success">Регистрация</a>
+    }
+</div>
+
 <form asp-action="Search" method="post" class="mb-4">
     <div class="row g-2">
         <div class="col-md-5">
             <label for="startDate" class="form-label">Дата заезда:</label>
-            <input type="date" id="startDate" name="startDate" class="form-control" 
+            <input type="date" id="startDate" name="startDate" class="form-control"
                    required min="@DateTime.Today.ToString("yyyy-MM-dd")">
         </div>
         <div class="col-md-5">
             <label for="endDate" class="form-label">Дата выезда:</label>
-            <input type="date" id="endDate" name="endDate" class="form-control" 
+            <input type="date" id="endDate" name="endDate" class="form-control"
                    min="@DateTime.Today.ToString("yyyy-MM-dd")">
         </div>
         <div class="col-md-2 d-flex align-items-end">
@@ -25,7 +38,6 @@
     </div>
 </form>
 
-<!-- Список доступных комнат -->
 <div class="container">
     @if (!Model.Any())
     {
@@ -39,9 +51,19 @@
                 <div class="card-body">
                     <h5 class="card-title">Комната @room.Number</h5>
                     <p class="card-text">Цена: @room.PricePerNight ₽</p>
-                    <a asp-controller="RentalView" asp-action="Index" asp-route-roomId="@room.Id" class="btn btn-primary">
-                        Арендовать
-                    </a>
+
+                    @if (isAuthenticated)
+                    {
+                        <a asp-controller="RentalView" asp-action="Index" asp-route-roomId="@room.Id" class="btn btn-primary">
+                            Арендовать
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="AuthView" asp-action="Login" class="btn btn-outline-secondary">
+                            Войти, чтобы арендовать
+                        </a>
+                    }
                 </div>
             </div>
         }
@@ -55,7 +77,7 @@
 
         startDateInput.addEventListener("change", function () {
             let startDateValue = startDateInput.value;
-            endDateInput.min = startDateValue; // Дата выезда должна быть не раньше даты заезда
+            endDateInput.min = startDateValue; 
 
             if (endDateInput.value < startDateValue) {
                 endDateInput.value = "";

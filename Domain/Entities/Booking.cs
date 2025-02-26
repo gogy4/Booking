@@ -1,34 +1,38 @@
 ﻿using System.Text.Json.Serialization;
 using Domain.Enums;
+using Domain.Interfaces;
 
 namespace Domain.Entities
 {
-    public class Booking
+    public class Booking : IEntity
     {
         public Guid Id { get; private set; }
-        public List<Guid> Customers { get; private set; }
+        public Guid CustomerId { get; private set; }
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
         public BookingStatus Status { get; private set; }
+        public Guid RoomId { get; private set; }
         
         public Booking() { }
 
         public Booking(Booking booking)
         {
             Id = Guid.NewGuid();
-            StartDate = booking.StartDate;
+            CustomerId = booking.CustomerId;
             EndDate = booking.EndDate;
-            Customers = new List<Guid>();
+            StartDate = booking.StartDate;
             Status = booking.Status;
+            RoomId = booking.RoomId;
         }
         
         [JsonConstructor]
-        public Booking(List<Guid> customers, DateTime startDate, DateTime endDate)
+        public Booking(Guid customer, DateTime startDate, DateTime endDate, Guid roomId)
         {
             Id = Guid.NewGuid();
-            Customers = customers;
+            CustomerId = customer;
             StartDate = startDate;
             EndDate = endDate;
+            RoomId = roomId;
         }
         
         public void ChangeDate(DateTime newStartDate, DateTime newEndDate)

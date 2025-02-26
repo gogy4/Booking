@@ -6,7 +6,7 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class RoomController(RoomServices roomServices) : ControllerBase
+public class RoomController(RoomServices roomServices, RentalService rentalService) : ControllerBase
 {
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(Guid id)
@@ -17,17 +17,17 @@ public class RoomController(RoomServices roomServices) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Room roomDto) 
+    public async Task<IActionResult> Create([FromBody] Room roomDto)
     {
-        var room = await roomServices.CreateRoom(roomDto.Number, roomDto.Customers, roomDto.RoomType, roomDto.PricePerNight);
+        var room = await roomServices.CreateRoom(roomDto.Number, roomDto.RoomType, roomDto.PricePerNight);
         return CreatedAtAction(nameof(GetById), new { id = room.Id }, room);
     }
-    
+
     [HttpPatch("{id}/confirm-rental")]
     public async Task<IActionResult> ConfirmRental(Guid id, DateTime startDate, DateTime endDate)
     {
         var room = await roomServices.GetById(id);
-        await roomServices.ConfirmRental(room, startDate, endDate);
+        await rentalService.ConfirmRental(room, startDate, endDate);
         return NoContent();
     }
 
@@ -38,7 +38,7 @@ public class RoomController(RoomServices roomServices) : ControllerBase
         await roomServices.CancelRental(room);
         return NoContent();
     }
-    
+
     [HttpPatch("{id}/populate-room")]
     public async Task<IActionResult> PopulateRoom(Guid id)
     {
@@ -46,7 +46,7 @@ public class RoomController(RoomServices roomServices) : ControllerBase
         await roomServices.PopulateRoom(room);
         return NoContent();
     }
-    
+
     [HttpPatch("{id}/clean-room")]
     public async Task<IActionResult> CleanRoom(Guid id)
     {
@@ -54,20 +54,20 @@ public class RoomController(RoomServices roomServices) : ControllerBase
         await roomServices.CleanRoom(room);
         return NoContent();
     }
-        
+
     [HttpPatch("{id}/set-free-room")]
     public async Task<IActionResult> SetFreeRoom(Guid id)
     {
         var room = await roomServices.GetById(id);
         await roomServices.SetFreeRoom(room);
         return NoContent();
-    } 
-    
+    }
+
     [HttpPatch("{id}/change-price")]
-    public async Task<IActionResult> ChangePricePerNight(Guid id, [FromBody] int newPrice) 
+    public async Task<IActionResult> ChangePricePerNight(Guid id, [FromBody] int newPrice)
     {
         var room = await roomServices.GetById(id);
         await roomServices.ChangePricePerNight(room, newPrice);
         return NoContent();
-    } 
+    }
 }

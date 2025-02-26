@@ -11,8 +11,9 @@ public class CustomerController(CustomerServices customerServices) : ControllerB
     [HttpPost]
     public async Task<ActionResult> CreateCustomer([FromBody] Customer customerDto)
     {
-        var customer = await customerServices.CreateCustomer(customerDto.FirstName, customerDto.LastName, customerDto.Email,
-            customerDto.PhoneNumber);
+        var customer = await customerServices.CreateCustomer(customerDto.FirstName, customerDto.LastName,
+            customerDto.Email,
+            customerDto.PhoneNumber, customerDto.Password);
         return CreatedAtAction(nameof(GetById), new { id = customer.Id }, customer);
     }
 
@@ -21,7 +22,7 @@ public class CustomerController(CustomerServices customerServices) : ControllerB
     {
         var customer = await customerServices.GetById(id);
         if (customer is null) return NotFound("Customer not found");
-        
+
         return Ok(customer);
     }
 
@@ -32,21 +33,21 @@ public class CustomerController(CustomerServices customerServices) : ControllerB
         return NoContent();
     }
 
-    [HttpPatch("{id}/change-email")] 
+    [HttpPatch("{id}/change-email")]
     public async Task<ActionResult> ChangeEmail(Guid id, [FromBody] string email)
     {
         await customerServices.ChangeEmail(id, email);
         return NoContent();
     }
-    
-    [HttpPatch("{id}/change-lastname")] 
+
+    [HttpPatch("{id}/change-lastname")]
     public async Task<ActionResult> ChangeLastName(Guid id, [FromBody] string lastName)
     {
         await customerServices.ChangeLastName(id, lastName);
         return NoContent();
     }
-    
-    [HttpPatch("{id}/change-phonenumber")] 
+
+    [HttpPatch("{id}/change-phonenumber")]
     public async Task<ActionResult> ChangePhoneNumber(Guid id, [FromBody] string phoneNumber)
     {
         await customerServices.ChangePhoneNumber(id, phoneNumber);
