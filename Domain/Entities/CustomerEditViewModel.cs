@@ -18,6 +18,18 @@ public class CustomerEditViewModel
         
     }
 
+    public CustomerEditViewModel(Guid id, string firstName, string lastName, string phoneNumber, string email, string oldPassword, string newPassword, string confirmPassword)
+    {
+        Id = id;
+        FirstName = firstName;
+        LastName = lastName;
+        PhoneNumber = phoneNumber;
+        Email = email;
+        OldPassword = oldPassword;
+        NewPassword = newPassword;
+        ConfirmPassword = confirmPassword;
+    }
+
     public CustomerEditViewModel(Customer customer)
     {
         Id = customer.Id;

@@ -19,58 +19,41 @@
 
 <form method="post" asp-action="EditUserData" asp-controller="ProfileView">
     <input type="hidden" asp-for="Id" />
-    <input type="hidden" asp-for="FirstName" />
-    <input type="hidden" asp-for="LastName" />
-    <input type="hidden" asp-for="FirstName" />
-    <input type="hidden" asp-for="PhoneNumber" />
-    <input type="hidden" asp-for="Email" />
-    <input type="hidden" asp-for="OldPassword" />
-    <input type="hidden" asp-for="NewPassword" />
-    <input type="hidden" asp-for="ConfirmPassword" />
-
-
 
     <div class="form-group">
-        <label asp-for="FirstName"></label>
-        <input type="text" class="form-control" asp-for="FirstName" required />
+        <label asp-for="FirstName">Имя:</label>
+        <input type="text" class="form-control" asp-for="FirstName" value="@Model.FirstName" />
     </div>
 
     <div class="form-group">
-        <label asp-for="LastName"></label>
-        <input type="text" class="form-control" asp-for="LastName" required />
+        <label asp-for="LastName">Фамилия:</label>
+        <input type="text" class="form-control" asp-for="LastName" value="@Model.LastName" />
     </div>
 
     <div class="form-group">
-        <label asp-for="PhoneNumber"></label>
-        <input type="text" class="form-control" asp-for="PhoneNumber" required />
+        <label asp-for="PhoneNumber">Номер телефона:</label>
+        <input type="text" class="form-control" asp-for="PhoneNumber" value="" placeholder="Введите номер телефона" />
     </div>
 
     <div class="form-group">
-        <label asp-for="Email"></label>
-        <input type="email" class="form-control" asp-for="Email" required />
+        <label asp-for="Email">Электронная почта:</label>
+        <input type="email" class="form-control" asp-for="Email" value="" placeholder="Введите email" />
     </div>
 
     <div class="form-group">
-        <label asp-for="OldPassword"></label>
+        <label asp-for="OldPassword">Старый пароль:</label>
         <input type="password" class="form-control" asp-for="OldPassword" required />
     </div>
 
     <div class="form-group">
-        <label asp-for="NewPassword"></label>
+        <label asp-for="NewPassword">Новый пароль:</label>
         <input type="password" class="form-control" asp-for="NewPassword" />
     </div>
 
     <div class="form-group">
-        <label asp-for="ConfirmPassword"></label>
+        <label asp-for="ConfirmPassword">Подтверждение пароля:</label>
         <input type="password" class="form-control" asp-for="ConfirmPassword" />
     </div>
 
     <button type="submit" class="btn btn-primary">Сохранить изменения</button>
 </form>
-
-<script>
-    document.getElementById('NewPassword').addEventListener('input', function () {
-        var confirmPasswordField = document.getElementById('ConfirmPassword');
-        confirmPasswordField.required = this.value.trim() !== "";
-    });
-</script>

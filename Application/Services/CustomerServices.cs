@@ -1,4 +1,6 @@
-﻿using Booking.Models;
+﻿using System.Security.Cryptography;
+using System.Text;
+using Booking.Models;
 using Domain.CustomerValidator;
 using Domain.Entities;
 using Infrastructure.Interfaces;
@@ -24,11 +26,11 @@ public class CustomerServices(ICustomerRepository customerRepository)
             throw new ArgumentException(string.Join(", ", result.Errors.Select(e => e.ErrorMessage)));
         }
         
-        await ChangeFirstName(customerId, customer.FirstName);
-        await ChangeLastName(customerId, customer.LastName);
-        await ChangePhoneNumber(customerId, customer.PhoneNumber);
-        await ChangeEmail(customerId, customer.Email);
-        await ChangePassword(customerId, customer.NewPassword);
+        if (customer.FirstName is not null) await ChangeFirstName(customerId, customer.FirstName);
+        if (customer.LastName is not null) await ChangeLastName(customerId, customer.LastName);
+        if (customer.PhoneNumber is not null) await ChangePhoneNumber(customerId, customer.PhoneNumber);
+        if (customer.Email is not null)await ChangeEmail(customerId, customer.Email);
+        if (customer.NewPassword is not null) await ChangePassword(customerId, customer.NewPassword);
     }
 
     public async Task<Customer?> GetById(Guid id)

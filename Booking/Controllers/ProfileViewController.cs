@@ -43,30 +43,27 @@ public class ProfileViewController(
         if (customer == null)
         {
             TempData["ErrorMessage"] = "Пользователь не найден";
-            return RedirectToAction("Index"); 
+            return RedirectToAction("Index");
         }
-
+        ViewBag.Message = TempData["Message"];
         var model = new CustomerEditViewModel(customer);
         return View(model);
     }
 
     [HttpPost]
-    public async Task<IActionResult> EditUserData(CustomerEditViewModel newCustomer)
+    public async Task<IActionResult> EditUserData(string firstName, string lastName, string phoneNumber, string email,
+        string oldPassword, string newPassword, string confirmPassword)
     {
         var userId = Guid.Parse(User.FindFirstValue("CustomerId"));
         var customer = await customerServices.GetById(userId);
-
-        if (!ModelState.IsValid)
-        {
-            TempData["ErrorMessage"] = "Некорректные данные";
-            return View(newCustomer);
-        }
+        var newCustomer = new CustomerEditViewModel(userId, firstName, lastName, phoneNumber, email, oldPassword,
+            newPassword, confirmPassword);
 
         try
         {
             await customerServices.EditCustomer(newCustomer, userId);
             TempData["Message"] = "Вы успешно изменили свои данные";
-            return RedirectToAction("EditUserData"); 
+            return RedirectToAction("EditUserData");
         }
         catch (ArgumentException e)
         {
