@@ -28,7 +28,6 @@ public class ConfirmRentalService(
 
     private async Task ConfirmRentalRoom(Room room, Guid bookingId)
     {
-        await ChangeEntityData(room, r => room.RentalRoom(), roomRepository);
         if (!await roomRepository.HaveRoomAsync(room)) await roomRepository.AddAsync(room);
         await roomRepository.AddBookingAsync(room, bookingId);
     }

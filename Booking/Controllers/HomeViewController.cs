@@ -8,17 +8,15 @@ public class HomeViewController(RoomServices roomServices, RentalService rentalS
 {
     [Route("")]
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(DateTime? startDate = null, DateTime? endDate = null)
     {
         var rooms = await roomServices.GetAll();
-        return View(rooms);
-    }
 
-    [HttpPost]
-    public async Task<IActionResult> Search(DateTime startDate, DateTime? endDate = null)
-    {
-        var rooms = await roomServices.GetAll();
-        var sortedRooms = await rentalService.GetByDate(rooms, startDate, endDate);
-        return View("Index", sortedRooms); 
+        if (startDate.HasValue)
+        {
+            rooms = await rentalService.GetByDate(rooms, startDate.Value, endDate);
+        }
+
+        return View(rooms);
     }
 }

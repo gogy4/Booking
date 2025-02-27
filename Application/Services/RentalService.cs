@@ -26,9 +26,9 @@ public class RentalService(
             .SelectMany(b => Enumerable.Range(0, (b.EndDate - b.StartDate).Days + 1)
                 .Select(offset => b.StartDate.AddDays(offset).ToString("yyyy-MM-dd")))
             .ToList();
-
         return bookedDates;
     }
+
 
     private async Task<List<Booking?>> GetBookings(Room room)
     {

@@ -30,38 +30,7 @@ public class RoomController(RoomServices roomServices, RentalService rentalServi
         await rentalService.ConfirmRental(room, startDate, endDate);
         return NoContent();
     }
-
-    [HttpPatch("{id}/cancel-rental")]
-    public async Task<IActionResult> CancelRental(Guid id)
-    {
-        var room = await roomServices.GetById(id);
-        await roomServices.CancelRental(room);
-        return NoContent();
-    }
-
-    [HttpPatch("{id}/populate-room")]
-    public async Task<IActionResult> PopulateRoom(Guid id)
-    {
-        var room = await roomServices.GetById(id);
-        await roomServices.PopulateRoom(room);
-        return NoContent();
-    }
-
-    [HttpPatch("{id}/clean-room")]
-    public async Task<IActionResult> CleanRoom(Guid id)
-    {
-        var room = await roomServices.GetById(id);
-        await roomServices.CleanRoom(room);
-        return NoContent();
-    }
-
-    [HttpPatch("{id}/set-free-room")]
-    public async Task<IActionResult> SetFreeRoom(Guid id)
-    {
-        var room = await roomServices.GetById(id);
-        await roomServices.SetFreeRoom(room);
-        return NoContent();
-    }
+    
 
     [HttpPatch("{id}/change-price")]
     public async Task<IActionResult> ChangePricePerNight(Guid id, [FromBody] int newPrice)

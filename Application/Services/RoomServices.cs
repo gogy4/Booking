@@ -24,26 +24,7 @@ public class RoomServices(
     {
         return await roomRepository.GetByIdAsync(roomId);
     }
-
-    public async Task CancelRental(Room room)
-    {
-        await ChangeDataRoom(room, r => room.CancelRental());
-    }
-
-    public async Task PopulateRoom(Room room)
-    {
-        await ChangeDataRoom(room, r => room.PopulateRoom());
-    }
-
-    public async Task CleanRoom(Room room)
-    {
-        await ChangeDataRoom(room, r => room.CleanRoom());
-    }
-
-    public async Task SetFreeRoom(Room room)
-    {
-        await ChangeDataRoom(room, r => room.SetFreeRoom());
-    }
+    
 
     public async Task ChangePricePerNight(Room room, int newPrice)
     {

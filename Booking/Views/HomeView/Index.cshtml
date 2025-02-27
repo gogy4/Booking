@@ -3,6 +3,13 @@
 @{
     ViewData["Title"] = "Доступные комнаты";
     var isAuthenticated = User.Identity?.IsAuthenticated ?? false;
+
+    // Получаем параметры из запроса (если есть)
+    var startDate = Context.Request.Query["startDate"];
+    var endDate = Context.Request.Query["endDate"];
+
+    var formattedStartDate = DateTime.TryParse(startDate, out var parsedStart) ? parsedStart.ToString("dd.MM.yyyy") : "";
+    var formattedEndDate = DateTime.TryParse(endDate, out var parsedEnd) ? parsedEnd.ToString("dd.MM.yyyy") : "";
 }
 
 <h2 class="text-center my-4">Доступные комнаты</h2>
@@ -20,17 +27,19 @@
     }
 </div>
 
-<form asp-action="Search" method="post" class="mb-4">
+<form asp-action="Index" method="get" class="mb-4">
     <div class="row g-2">
         <div class="col-md-5">
             <label for="startDate" class="form-label">Дата заезда:</label>
             <input type="date" id="startDate" name="startDate" class="form-control"
-                   required min="@DateTime.Today.ToString("yyyy-MM-dd")">
+                   min="@DateTime.Today.ToString("yyyy-MM-dd")"
+                   value="@(string.IsNullOrEmpty(startDate) ? "" : parsedStart.ToString("yyyy-MM-dd"))">
         </div>
         <div class="col-md-5">
             <label for="endDate" class="form-label">Дата выезда:</label>
             <input type="date" id="endDate" name="endDate" class="form-control"
-                   min="@DateTime.Today.ToString("yyyy-MM-dd")">
+                   min="@DateTime.Today.ToString("yyyy-MM-dd")"
+                   value="@(string.IsNullOrEmpty(endDate) ? "" : parsedEnd.ToString("yyyy-MM-dd"))">
         </div>
         <div class="col-md-2 d-flex align-items-end">
             <button type="submit" class="btn btn-success w-100">Найти</button>
@@ -38,10 +47,14 @@
     </div>
 </form>
 
+<div class="text-center mb-4">
+    <a asp-action="Index" class="btn btn-secondary">Показать все комнаты</a>
+</div>
+
 <div class="container">
     @if (!Model.Any())
     {
-        <p class="text-muted">Нет доступных комнат на выбранные даты.</p>
+        <p class="text-muted">Нет доступных комнат.</p>
     }
     else
     {
@@ -54,9 +67,18 @@
 
                     @if (isAuthenticated)
                     {
-                        <a asp-controller="RentalView" asp-action="Index" asp-route-roomId="@room.Id" class="btn btn-primary">
-                            Арендовать
-                        </a>
+                        <form method="get" asp-controller="RentalView" asp-action="Index">
+                            <input type="hidden" name="roomId" value="@room.Id">
+
+                            <!-- Если даты указаны, передаем их -->
+                            @if (!string.IsNullOrEmpty(startDate) && !string.IsNullOrEmpty(endDate))
+                            {
+                                <input type="hidden" name="startDate" value="@formattedStartDate">
+                                <input type="hidden" name="endDate" value="@formattedEndDate">
+                            }
+
+                            <button type="submit" class="btn btn-primary">Арендовать</button>
+                        </form>
                     }
                     else
                     {
@@ -64,6 +86,10 @@
                             Войти, чтобы арендовать
                         </a>
                     }
+
+                    <a asp-controller="RoomView" asp-action="Index" asp-route-roomId="@room.Id" class="btn btn-primary">
+                        Подробнее о комнате
+                    </a>
                 </div>
             </div>
         }
@@ -76,10 +102,8 @@
         let endDateInput = document.getElementById("endDate");
 
         startDateInput.addEventListener("change", function () {
-            let startDateValue = startDateInput.value;
-            endDateInput.min = startDateValue; 
-
-            if (endDateInput.value < startDateValue) {
+            endDateInput.min = startDateInput.value;
+            if (endDateInput.value < startDateInput.value) {
                 endDateInput.value = "";
             }
         });

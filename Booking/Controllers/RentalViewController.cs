@@ -1,21 +1,27 @@
 ﻿using Application.Services;
-using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace Booking.Controllers;
 
 public class RentalViewController(RoomServices roomServices, RentalService rentalService) : Controller
 {
-    [Route("rental-{roomId}")]
     [HttpGet]
-    public async Task<ActionResult> Index(Guid roomId)
+    public async Task<ActionResult> Index(Guid roomId, DateTime startDate, DateTime endDate)
     {
         var room = await roomServices.GetById(roomId);
         if (room == null) return NotFound("Комната не найдена");
 
-        var dates = await rentalService.GetBookingDates(room);
-        ViewBag.BookedDates = dates;
-        return View(room);
+        var bookedDates = (await rentalService.GetBookingDates(room)).Distinct().ToList();
+
+        var model = new RentalViewModel
+        {
+            Room = room,
+            StartDate = startDate,
+            EndDate = endDate,
+            BookedDates = bookedDates
+        };
+        return View(model);
     }
 
     [HttpPost]
@@ -24,7 +30,8 @@ public class RentalViewController(RoomServices roomServices, RentalService renta
         try
         {
             var room = await roomServices.GetById(roomId);
-            if (room is null) return NotFound("Room not found");
+            if (room == null) return NotFound("Комната не найдена");
+
             await rentalService.ConfirmRental(room, startDate, endDate);
             return RedirectToAction("Index", "HomeView");
         }
