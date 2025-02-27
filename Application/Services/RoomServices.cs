@@ -8,9 +8,9 @@ public class RoomServices(
     IRoomRepository roomRepository,
     BookingServices bookingServices)
 {
-    public async Task<Room> CreateRoom(int number, RoomType roomType, int pricePerNight)
+    public async Task<Room> CreateRoom(int number, RoomType roomType, int pricePerNight, string description, string imageUrl)
     {
-        var room = new Room(number, new List<Guid>(), pricePerNight, roomType);
+        var room = new Room(number, new List<Guid>(), pricePerNight, roomType, description, imageUrl);
         await roomRepository.AddAsync(room);
         return room;
     }
@@ -35,6 +35,11 @@ public class RoomServices(
     {
         if (room is null) throw new KeyNotFoundException("Room not found");
         changeRoomStatus(room);
+        await roomRepository.UpdateAsync(room);
+    }
+
+    public async Task UpdateRoom(Room room)
+    {
         await roomRepository.UpdateAsync(room);
     }
 }

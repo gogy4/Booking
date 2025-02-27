@@ -1686,7 +1686,8 @@
           "Application": "1.0.0",
           "Domain": "1.0.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.3.0",
-          "Microsoft.EntityFrameworkCore": "9.0.2"
+          "Microsoft.EntityFrameworkCore": "9.0.2",
+          "Swashbuckle.AspNetCore.SwaggerGen": "7.2.0"
         },
         "compile": {
           "bin/placeholder/API.dll": {}

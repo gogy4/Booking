@@ -1,48 +1,55 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using Domain.Enums;
 using Domain.Interfaces;
 
-namespace Domain.Entities;
-
-public class Room : IEntity
+namespace Domain.Entities
 {
-    public Guid Id { get; private set; }
-    public List<Guid> BookingId { get; private set; }
-    public int Number { get; private set; }
-    public int PricePerNight { get; private set; }
-    public RoomType RoomType { get; private set; }
-
-    public Room()
+    public class Room : IEntity
     {
-    }
-    
-    [JsonConstructor]
-    public Room(int number, List<Guid> bookingId, int pricePerNight, RoomType roomType)
-    {
-        Id = Guid.NewGuid();
-        Number = number;
-        BookingId = bookingId;
-        PricePerNight = pricePerNight;
-        RoomType = roomType;
-    }
+        public Guid Id { get; private set; }
+        public List<Guid> BookingId { get; private set; }
+        public int Number { get; private set; }
+        public int PricePerNight { get; private set; }
+        public RoomType RoomType { get; private set; }
+        public string Description { get; private set; }  // Новое поле для описания
+        public string ImageUrl { get; private set; }  // Новое поле для URL изображения
 
+        public Room()
+        {
+        }
 
-    public void AddBooking(Guid bookingId)
-    {
-        BookingId.Add(bookingId);
-    }
+        [JsonConstructor]
+        public Room(int number, List<Guid> bookingId, int pricePerNight, RoomType roomType, string description, string imageUrl)
+        {
+            Id = Guid.NewGuid();
+            Number = number;
+            BookingId = bookingId;
+            PricePerNight = pricePerNight;
+            RoomType = roomType;
+            Description = description;
+            ImageUrl = imageUrl;
+        }
 
-    public Room(Room room)
-    {
-        Id = Guid.NewGuid();
-        BookingId = room.BookingId;
-        Number = room.Number;
-        PricePerNight = room.PricePerNight;
-        RoomType = room.RoomType;
-    }
+        public void AddBooking(Guid bookingId)
+        {
+            BookingId.Add(bookingId);
+        }
 
-    public void ChangePrice(int newPrice)
-    {
-        PricePerNight = newPrice;
+        public void ChangePrice(int newPrice)
+        {
+            PricePerNight = newPrice;
+        }
+
+        public void ChangeDescription(string newDescription)
+        {
+            Description = newDescription;
+        }
+
+        public void ChangeImageUrl(string newImageUrl)
+        {
+            ImageUrl = newImageUrl;
+        }
     }
 }

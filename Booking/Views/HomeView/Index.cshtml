@@ -64,7 +64,23 @@
                     <h5 class="card-title">Комната @room.Number</h5>
                     <p class="card-text">Цена: @room.PricePerNight ₽</p>
 
-                    <div class="room-buttons">
+                    <!-- Выводим картинку комнаты -->
+                    @if (!string.IsNullOrEmpty(room.ImageUrl))
+                    {
+                        <div class="room-image">
+                            <img src="@room.ImageUrl" alt="Изображение комнаты" class="img-fluid" />
+                        </div>
+                    }
+
+                    <!-- Выводим описание комнаты -->
+                    @if (!string.IsNullOrEmpty(room.Description))
+                    {
+                        <div class="room-description mt-2">
+                            <p>@room.Description</p>
+                        </div>
+                    }
+
+                    <div class="room-buttons mt-3">
                         @if (isAuthenticated)
                         {
                             <form method="get" asp-controller="RentalView" asp-action="Index">
