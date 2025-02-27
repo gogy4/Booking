@@ -1,25 +1,42 @@
 ﻿using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Domain.CustomerValidator;
 using Domain.Entities;
+using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 
 namespace Application.Services;
 
-public class AuthenticationService(CustomerServices customerService, IHttpContextAccessor httpContextAccessor)
+public class AuthenticationService(ICustomerRepository customerRepository, IHttpContextAccessor httpContextAccessor, CustomerServices customerServices)
 {
     public async Task Register(string firstName, string lastName, string email, string phoneNumber, string password)
     {
+        var customer = new Customer(firstName, lastName, phoneNumber, email, password);
+        var validator = new CustomerRegisterValidator(customerRepository);
+        var result = await validator.ValidateAsync(customer);
+        if (!result.IsValid)
+        {
+            throw new ArgumentException(string.Join(", ", result.Errors.Select(e => e.ErrorMessage)));
+        }
         var hashedPassword = HashPassword(password);
-        await customerService.CreateCustomer(firstName, lastName, email, phoneNumber, hashedPassword);
+        await customerServices.CreateCustomer(firstName, lastName, email, phoneNumber, hashedPassword);
     }
 
-    public async Task<bool> Login(string email, string password)
+    public async Task Login(string email, string password)
     {
-        var customer = await customerService.GetByEmail(email);
-        if (customer is null || customer.Password != HashPassword(password)) return false;
+        var customer = await customerRepository.GetByEmail(email);
+        if (customer is null) throw new ArgumentException("Customer not found");
+        var newPassword = HashPassword(password);
+        var validator = new CustomerLoginValidator(customerRepository);
+        var result = await validator.ValidateAsync((email, newPassword));
+        if (!result.IsValid)
+        {
+            throw new ArgumentException(string.Join(", ", result.Errors.Select(e => e.ErrorMessage)));
+        }
+        
         var claims = new List<Claim>
         {
             new(ClaimTypes.Name, customer.FirstName),
@@ -33,8 +50,6 @@ public class AuthenticationService(CustomerServices customerService, IHttpContex
         await httpContextAccessor.HttpContext
             .SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-
-        return true;
     }
 
     public async Task Logout()

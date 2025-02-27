@@ -1,4 +1,6 @@
-﻿using Domain.Entities;
+﻿using Booking.Models;
+using Domain.CustomerValidator;
+using Domain.Entities;
 using Infrastructure.Interfaces;
 
 namespace Application.Services;
@@ -11,6 +13,22 @@ public class CustomerServices(ICustomerRepository customerRepository)
         var customer = new Customer(firstName, lastName, phoneNumber, email, password);
         await customerRepository.AddAsync(customer);
         return customer;
+    }
+
+    public async Task EditCustomer(CustomerEditViewModel customer, Guid customerId)
+    {
+        var validator = new CustomerEditValidator(customerRepository);
+        var result = await validator.ValidateAsync(customer);
+        if (!result.IsValid)
+        {
+            throw new ArgumentException(string.Join(", ", result.Errors.Select(e => e.ErrorMessage)));
+        }
+        
+        await ChangeFirstName(customerId, customer.FirstName);
+        await ChangeLastName(customerId, customer.LastName);
+        await ChangePhoneNumber(customerId, customer.PhoneNumber);
+        await ChangeEmail(customerId, customer.Email);
+        await ChangePassword(customerId, customer.NewPassword);
     }
 
     public async Task<Customer?> GetById(Guid id)
@@ -38,21 +56,11 @@ public class CustomerServices(ICustomerRepository customerRepository)
         await ChangeData(customerId, customer => customer.ChangePhoneNumber(phoneNumber));
     }
 
-    public async Task AddBooking(Guid customerId, Guid bookingId)
+    public async Task ChangePassword(Guid customerId, string password)
     {
-        await ChangeData(customerId, customer => customer.AddBooking(bookingId));
+        await ChangeData(customerId, customer => customer.ChangePassword(password));
     }
-
-    public async Task RemoveBooking(Guid customerId, Guid bookingId)
-    {
-        await ChangeData(customerId, customer => customer.RemoveBooking(bookingId));
-    }
-
-    public async Task<Customer> GetByEmail(string email)
-    {
-        return await customerRepository.GetByEmail(email);
-    }
-
+    
 
     private async Task ChangeData(Guid customerId, Action<Customer> changeCustomerData)
     {

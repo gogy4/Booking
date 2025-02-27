@@ -1,22 +1,22 @@
-﻿using Domain.Entities;
-using Domain.Enums;
+﻿
 using Domain.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using BookingEntity = Domain.Entities.Booking;
 
 namespace Infrastructure.Repositories;
 
-public class BookingRepository(AppDbContext context) : IBookingRepository, IRepository<Booking>
+public class BookingRepository(AppDbContext context) : IBookingRepository, IRepository<BookingEntity>
 {
-    public async Task<Booking?> GetByIdAsync(Guid id)
+    public async Task<BookingEntity?> GetByIdAsync(Guid id)
     {
         return await context.Bookings.FindAsync(id);
     }
     
     public async Task UpdateAsync(IEntity booking)
     {
-        context.Bookings.Update(booking as Booking);
+        context.Bookings.Update(booking as BookingEntity);
         await context.SaveChangesAsync();
     }
 
@@ -27,19 +27,19 @@ public class BookingRepository(AppDbContext context) : IBookingRepository, IRepo
         await context.SaveChangesAsync();
     }
 
-    public async Task AddAsync(Booking booking)
+    public async Task AddAsync(BookingEntity booking)
     {
         await context.Bookings.AddAsync(booking);
         await context.SaveChangesAsync();
     }
 
-    public async Task<List<Booking>> GetAllAsync(DateTime startDate = default)
+    public async Task<List<BookingEntity>> GetAllAsync(DateTime startDate = default)
     {
         if (startDate == default) startDate = DateTime.Today;
         return await context.Bookings.Where(x=>x.StartDate >= startDate || x.StartDate == default).ToListAsync();
     }
 
-    public async Task<List<Booking>> GetBookingsByDate(DateTime startDate, DateTime endDate)
+    public async Task<List<BookingEntity>> GetBookingsByDate(DateTime startDate, DateTime endDate)
     {
         return await context.Bookings.Where(b=>b.StartDate >= startDate && b.EndDate <= endDate).ToListAsync();
     }

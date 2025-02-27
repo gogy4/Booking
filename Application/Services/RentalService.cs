@@ -1,5 +1,5 @@
 ﻿using Domain.Entities;
-
+using BookingEntity = Domain.Entities.Booking;
 namespace Application.Services;
 
 public class RentalService(
@@ -30,10 +30,10 @@ public class RentalService(
     }
 
 
-    private async Task<List<Booking?>> GetBookings(Room room)
+    private async Task<List<BookingEntity?>> GetBookings(Room room)
     {
         var ids = room.BookingId;
-        var bookings = new List<Booking?>();
+        var bookings = new List<BookingEntity?>();
         foreach (var id in ids) bookings.Add(await bookingServices.GetById(id));
 
         return bookings;
@@ -49,7 +49,7 @@ public class RentalService(
         await cancelRentalService.CancelRental(customerId, bookingId);
     }
 
-    private static Task<bool> IsDateAvailable(List<Booking?> allBookings, DateTime startDate, DateTime? endDate = null)
+    private static Task<bool> IsDateAvailable(List<BookingEntity?> allBookings, DateTime startDate, DateTime? endDate = null)
     {
         endDate ??= startDate;
 

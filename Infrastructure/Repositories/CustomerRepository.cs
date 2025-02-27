@@ -37,6 +37,11 @@ public class CustomerRepository(AppDbContext context) : ICustomerRepository, IRe
         return await context.Customers.FirstOrDefaultAsync(x => x.Email == email);
     }
 
+    public async Task<Customer?> GetByPhoneNumber(string phoneNumber)
+    {
+        return await context.Customers.FirstOrDefaultAsync(x => x.PhoneNumber == phoneNumber);
+    }
+
     public async Task AddAsync(Customer customer)
     {
         await context.Customers.AddAsync(customer);

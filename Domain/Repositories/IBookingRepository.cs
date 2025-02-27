@@ -1,18 +1,19 @@
-﻿using Domain.Entities;
-using Domain.Enums;
+﻿
 using Domain.Interfaces;
+using BookingEntity = Domain.Entities.Booking;
+
 
 namespace Infrastructure.Interfaces;
 
-public interface IBookingRepository : IRepository<Booking>
+public interface IBookingRepository : IRepository<BookingEntity>
 {
-    Task<Booking?> GetByIdAsync(Guid id); 
+    Task<BookingEntity?> GetByIdAsync(Guid id); 
     Task UpdateAsync(IEntity booking);
     Task DeleteBooking(IEntity entity, Guid bookingId);
-    Task AddAsync(Booking booking);
+    Task AddAsync(BookingEntity booking);
     
-    Task<List<Booking>> GetAllAsync(DateTime startDate = default);
+    Task<List<BookingEntity>> GetAllAsync(DateTime startDate = default);
 
-    Task<List<Booking>> GetBookingsByDate(DateTime startDate, DateTime endDate);
+    Task<List<BookingEntity>> GetBookingsByDate(DateTime startDate, DateTime endDate);
     
 }

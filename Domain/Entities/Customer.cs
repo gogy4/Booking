@@ -11,9 +11,7 @@ public class Customer : IEntity
     public string Email { get; private set; }
     public string Password { get; private set; }
     public List<Guid> BookingIds { get; private set; } = new();
-
-    private Customer() { }
-
+    
     public Customer(string firstName, string lastName, string phoneNumber, string email, string password)
     {
         Id = Guid.NewGuid();
@@ -31,4 +29,5 @@ public class Customer : IEntity
     public void ChangePassword(string newPasswordHash) => Password = newPasswordHash;
     public void AddBooking(Guid bookingId) => BookingIds.Add(bookingId);
     public void RemoveBooking(Guid bookingId) => BookingIds.Remove(bookingId);
+    
 }

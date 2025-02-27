@@ -11,9 +11,16 @@ public class AuthViewController(AuthenticationService authenticationService) : C
     [HttpPost]
     public async Task<IActionResult> Login(string email, string password)
     {
-        if (await authenticationService.Login(email, password)) return RedirectToAction("Index", "HomeView");
-        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-        return View();
+        try
+        {
+            await authenticationService.Login(email, password);
+            return RedirectToAction("Index", "HomeView");
+        }
+        catch (ArgumentException e)
+        {
+            ModelState.AddModelError(string.Empty, e.Message);
+            return View();
+        }
     }
     
     [HttpGet]
@@ -22,8 +29,16 @@ public class AuthViewController(AuthenticationService authenticationService) : C
     [HttpPost]
     public async Task<IActionResult> Register(string firstName, string lastName, string email, string phoneNumber, string password)
     {
-        await authenticationService.Register(firstName, lastName, email, phoneNumber, password);
-        return RedirectToAction("Login");
+        try
+        {
+            await authenticationService.Register(firstName, lastName, email, phoneNumber, password);
+            return RedirectToAction("Login");
+        }
+        catch (ArgumentException e)
+        {
+            ModelState.AddModelError(string.Empty, e.Message);
+            return View();
+        }
     }
 
     [HttpGet]

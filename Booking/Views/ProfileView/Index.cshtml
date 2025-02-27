@@ -9,9 +9,10 @@
         </div>
     }
 }
-
+<div class="mt-3">
+    <a asp-controller="ProfileView" asp-action="EditUserData" class="btn btn-secondary">Изменить профиль</a>
+</div>
 <h2>Мои брони</h2>
-
 @if (Model.Any())
 {
     <table class="table">

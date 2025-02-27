@@ -209,3 +209,4 @@ D:\Rider Projects\Booking\Booking\Booking\obj\Debug\net9.0\Booking.MvcApplicatio
 D:\Rider Projects\Booking\Booking\Booking\obj\Debug\net9.0\Booking.sourcelink.json
 D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\API.dll
 D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\API.pdb
+D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\FluentValidation.dll

@@ -10,3 +10,4 @@ D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\refint\Domain.dll
 D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\Domain.pdb
 D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\ref\Domain.dll
 D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\Domain.sourcelink.json
+D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\Domain.csproj.AssemblyReference.cache

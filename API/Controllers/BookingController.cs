@@ -1,5 +1,5 @@
 ﻿using Application.Services;
-using Domain.Entities;
+using BookingEntity = Domain.Entities.Booking;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -17,7 +17,7 @@ public class BookingController(BookingServices bookingServices) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Booking booking)
+    public async Task<IActionResult> Create([FromBody] BookingEntity booking)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
