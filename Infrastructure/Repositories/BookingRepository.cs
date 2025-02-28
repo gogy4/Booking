@@ -7,7 +7,7 @@ using BookingEntity = Domain.Entities.Booking;
 
 namespace Infrastructure.Repositories;
 
-public class BookingRepository(AppDbContext context) : IBookingRepository, IRepository<BookingEntity>
+public class BookingRepository(AppDbContext context) : IBookingRepository
 {
     public async Task<BookingEntity?> GetByIdAsync(Guid id)
     {

@@ -12,7 +12,7 @@ public class Customer : IEntity
     public string PhoneNumber { get; private set; }
     public string Email { get; private set; }
     public string Password { get; private set; }
-    public List<Guid> BookingIds { get; private set; } = new();
+    public List<Guid> BookingIds { get;  } = new();
     
     public Customer(string firstName, string lastName, string phoneNumber, string email, string password)
     {

@@ -7,11 +7,11 @@ namespace Domain.Entities
     public class Booking : IEntity
     {
         public Guid Id { get; private set; }
-        public Guid CustomerId { get; private set; }
-        public DateTime StartDate { get; private set; }
-        public DateTime EndDate { get; private set; }
-        public BookingStatus Status { get; private set; }
-        public Guid RoomId { get; private set; }
+        public Guid CustomerId { get;  }
+        public DateTime StartDate { get; }
+        public DateTime EndDate { get; }
+        public BookingStatus Status { get;  }
+        public Guid RoomId { get;  }
         
         public Booking() { }
 
@@ -33,24 +33,6 @@ namespace Domain.Entities
             StartDate = startDate;
             EndDate = endDate;
             RoomId = roomId;
-        }
-        
-        public void ChangeDate(DateTime newStartDate, DateTime newEndDate)
-        {
-            if (newStartDate >= newEndDate) throw new ArgumentException("Invalid date");
-            StartDate = newStartDate;
-            EndDate = newEndDate;
-        }
-
-        public void CancelRental()
-        {
-            StartDate = DateTime.MinValue;
-            EndDate = DateTime.MinValue;
-        }
-
-        public void ConfirmRental()
-        {
-            if (StartDate < DateTime.Now) throw new ArgumentException("Cannot confirm an already past booking");
         }
 
         public bool IsValidateDates()

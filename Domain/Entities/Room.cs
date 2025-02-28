@@ -9,7 +9,7 @@ namespace Domain.Entities
     public class Room : IEntity
     {
         public Guid Id { get; private set; }
-        public List<Guid> BookingId { get; private set; }
+        public List<Guid> BookingId { get;  }
         public int Number { get; private set; }
         public int PricePerNight { get; private set; }
         public RoomType RoomType { get; private set; }

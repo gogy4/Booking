@@ -8,7 +8,6 @@ public interface IRoomRepository : IRepository<Room>
 {
     Task<Room?> GetByIdAsync(Guid id);
     Task<List<Room>> GetAllAsync();
-    Task DeleteAsync(Room room);
     Task AddAsync(Room room);
     Task UpdateAsync(IEntity room);
     Task AddBookingAsync(Room room, Guid booking);

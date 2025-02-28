@@ -58,7 +58,7 @@ public class CustomerServices(ICustomerRepository customerRepository)
         await ChangeData(customerId, customer => customer.ChangePhoneNumber(phoneNumber));
     }
 
-    public async Task ChangePassword(Guid customerId, string password)
+    private async Task ChangePassword(Guid customerId, string password)
     {
         await ChangeData(customerId, customer => customer.ChangePassword(password));
     }

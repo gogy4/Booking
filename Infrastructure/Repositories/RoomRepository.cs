@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class RoomRepository(AppDbContext context) : IRoomRepository, IRepository<Room>
+public class RoomRepository(AppDbContext context) : IRoomRepository
 {
     public async Task<Room?> GetByIdAsync(Guid id)
     {

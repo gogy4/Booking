@@ -60,8 +60,7 @@
         @foreach (var room in Model)
 {
     <div class="card mb-3 w-100 room-card">
-        <div class="row g-0"> <!-- g-0 убирает отступы между колонками -->
-            <!-- Левая колонка с изображением -->
+        <div class="row g-0"> 
             <div class="col-md-4 d-flex align-items-center justify-content-center">
                 @if (!string.IsNullOrEmpty(room.ImageUrl))
                 {
@@ -69,7 +68,6 @@
                 }
             </div>
 
-            <!-- Правая колонка с информацией -->
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">Комната @room.Number</h5>

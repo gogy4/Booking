@@ -1,5 +1,4 @@
-﻿
-using Domain.Interfaces;
+﻿using Domain.Interfaces;
 using BookingEntity = Domain.Entities.Booking;
 
 
@@ -13,7 +12,5 @@ public interface IBookingRepository : IRepository<BookingEntity>
     Task AddAsync(BookingEntity booking);
     
     Task<List<BookingEntity>> GetAllAsync(DateTime startDate = default);
-
-    Task<List<BookingEntity>> GetBookingsByDate(DateTime startDate, DateTime endDate);
     
 }
