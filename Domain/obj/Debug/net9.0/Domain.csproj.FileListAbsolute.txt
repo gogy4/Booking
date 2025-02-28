@@ -1,13 +1,14 @@
+D:\Rider Projects\Booking\Booking\Domain\bin\Debug\net9.0\Booking.xml
 D:\Rider Projects\Booking\Booking\Domain\bin\Debug\net9.0\Domain.deps.json
 D:\Rider Projects\Booking\Booking\Domain\bin\Debug\net9.0\Domain.dll
 D:\Rider Projects\Booking\Booking\Domain\bin\Debug\net9.0\Domain.pdb
+D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\Domain.csproj.AssemblyReference.cache
 D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
 D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\Domain.AssemblyInfoInputs.cache
 D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\Domain.AssemblyInfo.cs
 D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\Domain.csproj.CoreCompileInputs.cache
+D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\Domain.sourcelink.json
 D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\Domain.dll
 D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\refint\Domain.dll
 D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\Domain.pdb
 D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\ref\Domain.dll
-D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\Domain.sourcelink.json
-D:\Rider Projects\Booking\Booking\Domain\obj\Debug\net9.0\Domain.csproj.AssemblyReference.cache

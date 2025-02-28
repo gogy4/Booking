@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "StL+hW+NWIGxYEvXjiQwhfL+OoQy0hDLfoXuEouiAEs=",
+  "Hash": "exiiksHlgSSzo6Do83iAK5Idw7eGtL4g5cNLIGFGO8A=",
   "Source": "Booking",
   "BasePath": "_content/Booking",
   "Mode": "Default",
@@ -248,12 +248,12 @@
       "OriginalItemSpec": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Identity": "D:\\Rider Projects\\Booking\\Booking\\Booking\\obj\\Debug\\net9.0\\compressed\\3npk1xjied-vc824q83bm.gz",
+      "Identity": "D:\\Rider Projects\\Booking\\Booking\\Booking\\obj\\Debug\\net9.0\\compressed\\3npk1xjied-c7qicazj9m.gz",
       "SourceId": "Booking",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Rider Projects\\Booking\\Booking\\Booking\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/Booking",
-      "RelativePath": "css/site#[.{fingerprint=vc824q83bm}]?.css.gz",
+      "RelativePath": "css/site#[.{fingerprint=c7qicazj9m}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -262,8 +262,8 @@
       "RelatedAsset": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\css\\site.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "aqb9lknqss",
-      "Integrity": "opj+CyV8PU5h/VvrUbfJwBdhrmzBObw9YLKko/HD86U=",
+      "Fingerprint": "g8k80wqx7f",
+      "Integrity": "kIcE2zD58SOkO+fsNNaNTE4KOz9y0iYv7FpIWMJ0r1E=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\css\\site.css"
@@ -1417,8 +1417,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "vc824q83bm",
-      "Integrity": "zwLDkdd49aFwQIt/vAFENIykHMAhLrUhupGMobBSdgU=",
+      "Fingerprint": "c7qicazj9m",
+      "Integrity": "KDm6M1FvZnZVkesNGSDlfNzd6YzSbNY5MBJGP/QDXzk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1443,6 +1443,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\images\\dora2.jpg",
+      "SourceId": "Booking",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\",
+      "BasePath": "_content/Booking",
+      "RelativePath": "images/dora2#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "4w0v9sxwqj",
+      "Integrity": "RL8FXWhvN6xgCJEzScZb9eKdWl4imj+HMmGVhgoOs6o=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\dora2.jpg"
+    },
+    {
+      "Identity": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\images\\PtlKa926mmQ.jpg",
+      "SourceId": "Booking",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\",
+      "BasePath": "_content/Booking",
+      "RelativePath": "images/PtlKa926mmQ#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gq8zi4qdxr",
+      "Integrity": "CCehDA7qUL6i3NvgPxehJtozJgCYWVChnZHu7ITkGeg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\PtlKa926mmQ.jpg"
     },
     {
       "Identity": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\js\\site.js",
@@ -2752,7 +2794,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 08:42:30 GMT"
+          "Value": "Fri, 28 Feb 2025 05:52:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2813,7 +2855,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 08:42:30 GMT"
+          "Value": "Fri, 28 Feb 2025 05:52:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2858,7 +2900,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 08:42:30 GMT"
+          "Value": "Fri, 28 Feb 2025 05:52:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2913,7 +2955,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 08:42:30 GMT"
+          "Value": "Fri, 28 Feb 2025 05:52:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2974,7 +3016,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 08:42:30 GMT"
+          "Value": "Fri, 28 Feb 2025 05:52:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3019,7 +3061,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 08:42:30 GMT"
+          "Value": "Fri, 28 Feb 2025 05:52:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3074,7 +3116,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 08:42:30 GMT"
+          "Value": "Fri, 28 Feb 2025 05:52:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3127,7 +3169,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 08:42:30 GMT"
+          "Value": "Fri, 28 Feb 2025 05:52:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3164,7 +3206,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 08:42:30 GMT"
+          "Value": "Fri, 28 Feb 2025 05:52:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3211,7 +3253,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 08:42:30 GMT"
+          "Value": "Fri, 28 Feb 2025 05:52:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3264,7 +3306,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 08:42:30 GMT"
+          "Value": "Fri, 28 Feb 2025 05:52:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3301,7 +3343,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 24 Feb 2025 08:42:30 GMT"
+          "Value": "Fri, 28 Feb 2025 05:52:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3324,13 +3366,13 @@
       ]
     },
     {
-      "Route": "css/site.css",
-      "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\obj\\Debug\\net9.0\\compressed\\3npk1xjied-vc824q83bm.gz",
+      "Route": "css/site.c7qicazj9m.css",
+      "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\obj\\Debug\\net9.0\\compressed\\3npk1xjied-c7qicazj9m.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.002590673575"
+          "Quality": "0.002375296912"
         }
       ],
       "ResponseHeaders": [
@@ -3340,19 +3382,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "385"
+          "Value": "420"
         },
         {
           "Name": "ETag",
-          "Value": "\"opj+CyV8PU5h/VvrUbfJwBdhrmzBObw9YLKko/HD86U=\""
+          "Value": "\"kIcE2zD58SOkO+fsNNaNTE4KOz9y0iYv7FpIWMJ0r1E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 16:07:38 GMT"
+          "Value": "Fri, 28 Feb 2025 07:38:00 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Value": "max-age=31536000, immutable"
         },
         {
           "Name": "Content-Encoding",
@@ -3368,18 +3410,26 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"zwLDkdd49aFwQIt/vAFENIykHMAhLrUhupGMobBSdgU=\""
+          "Value": "W/\"KDm6M1FvZnZVkesNGSDlfNzd6YzSbNY5MBJGP/QDXzk=\""
         }
       ],
       "EndpointProperties": [
         {
+          "Name": "fingerprint",
+          "Value": "c7qicazj9m"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
           "Name": "integrity",
-          "Value": "sha256-zwLDkdd49aFwQIt/vAFENIykHMAhLrUhupGMobBSdgU="
+          "Value": "sha256-KDm6M1FvZnZVkesNGSDlfNzd6YzSbNY5MBJGP/QDXzk="
         }
       ]
     },
     {
-      "Route": "css/site.css",
+      "Route": "css/site.c7qicazj9m.css",
       "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3389,7 +3439,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "823"
+          "Value": "919"
         },
         {
           "Name": "Content-Type",
@@ -3397,121 +3447,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zwLDkdd49aFwQIt/vAFENIykHMAhLrUhupGMobBSdgU=\""
+          "Value": "\"KDm6M1FvZnZVkesNGSDlfNzd6YzSbNY5MBJGP/QDXzk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 16:07:38 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-zwLDkdd49aFwQIt/vAFENIykHMAhLrUhupGMobBSdgU="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.css.gz",
-      "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\obj\\Debug\\net9.0\\compressed\\3npk1xjied-vc824q83bm.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "385"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"opj+CyV8PU5h/VvrUbfJwBdhrmzBObw9YLKko/HD86U=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 16:07:38 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-opj+CyV8PU5h/VvrUbfJwBdhrmzBObw9YLKko/HD86U="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.vc824q83bm.css",
-      "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\obj\\Debug\\net9.0\\compressed\\3npk1xjied-vc824q83bm.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.002590673575"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "385"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"opj+CyV8PU5h/VvrUbfJwBdhrmzBObw9YLKko/HD86U=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 16:07:38 GMT"
+          "Value": "Fri, 28 Feb 2025 07:38:00 GMT"
         },
         {
           "Name": "Cache-Control",
           "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"zwLDkdd49aFwQIt/vAFENIykHMAhLrUhupGMobBSdgU=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "vc824q83bm"
+          "Value": "c7qicazj9m"
         },
         {
           "Name": "label",
@@ -3519,13 +3469,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-zwLDkdd49aFwQIt/vAFENIykHMAhLrUhupGMobBSdgU="
+          "Value": "sha256-KDm6M1FvZnZVkesNGSDlfNzd6YzSbNY5MBJGP/QDXzk="
         }
       ]
     },
     {
-      "Route": "css/site.vc824q83bm.css",
-      "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\css\\site.css",
+      "Route": "css/site.c7qicazj9m.css.gz",
+      "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\obj\\Debug\\net9.0\\compressed\\3npk1xjied-c7qicazj9m.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3534,7 +3484,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "823"
+          "Value": "420"
         },
         {
           "Name": "Content-Type",
@@ -3542,56 +3492,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zwLDkdd49aFwQIt/vAFENIykHMAhLrUhupGMobBSdgU=\""
+          "Value": "\"kIcE2zD58SOkO+fsNNaNTE4KOz9y0iYv7FpIWMJ0r1E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 16:07:38 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "vc824q83bm"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-zwLDkdd49aFwQIt/vAFENIykHMAhLrUhupGMobBSdgU="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.vc824q83bm.css.gz",
-      "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\obj\\Debug\\net9.0\\compressed\\3npk1xjied-vc824q83bm.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "385"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"opj+CyV8PU5h/VvrUbfJwBdhrmzBObw9YLKko/HD86U=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 16:07:38 GMT"
+          "Value": "Fri, 28 Feb 2025 07:38:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3609,7 +3514,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "vc824q83bm"
+          "Value": "c7qicazj9m"
         },
         {
           "Name": "label",
@@ -3617,7 +3522,144 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-opj+CyV8PU5h/VvrUbfJwBdhrmzBObw9YLKko/HD86U="
+          "Value": "sha256-kIcE2zD58SOkO+fsNNaNTE4KOz9y0iYv7FpIWMJ0r1E="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.css",
+      "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\obj\\Debug\\net9.0\\compressed\\3npk1xjied-c7qicazj9m.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002375296912"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "420"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kIcE2zD58SOkO+fsNNaNTE4KOz9y0iYv7FpIWMJ0r1E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 07:38:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"KDm6M1FvZnZVkesNGSDlfNzd6YzSbNY5MBJGP/QDXzk=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KDm6M1FvZnZVkesNGSDlfNzd6YzSbNY5MBJGP/QDXzk="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.css",
+      "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "919"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KDm6M1FvZnZVkesNGSDlfNzd6YzSbNY5MBJGP/QDXzk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 07:38:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KDm6M1FvZnZVkesNGSDlfNzd6YzSbNY5MBJGP/QDXzk="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.css.gz",
+      "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\obj\\Debug\\net9.0\\compressed\\3npk1xjied-c7qicazj9m.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "420"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kIcE2zD58SOkO+fsNNaNTE4KOz9y0iYv7FpIWMJ0r1E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 07:38:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-kIcE2zD58SOkO+fsNNaNTE4KOz9y0iYv7FpIWMJ0r1E="
         }
       ]
     },
@@ -3916,6 +3958,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-wfFuuYm+Lh6RbCeeiUqxw334b/hIOkp5j9eokGUM1Y0="
+        }
+      ]
+    },
+    {
+      "Route": "images/dora2.4w0v9sxwqj.jpg",
+      "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\images\\dora2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "117544"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RL8FXWhvN6xgCJEzScZb9eKdWl4imj+HMmGVhgoOs6o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 05:54:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4w0v9sxwqj"
+        },
+        {
+          "Name": "label",
+          "Value": "images/dora2.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-RL8FXWhvN6xgCJEzScZb9eKdWl4imj+HMmGVhgoOs6o="
+        }
+      ]
+    },
+    {
+      "Route": "images/dora2.jpg",
+      "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\images\\dora2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "117544"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RL8FXWhvN6xgCJEzScZb9eKdWl4imj+HMmGVhgoOs6o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 05:54:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-RL8FXWhvN6xgCJEzScZb9eKdWl4imj+HMmGVhgoOs6o="
+        }
+      ]
+    },
+    {
+      "Route": "images/PtlKa926mmQ.gq8zi4qdxr.jpg",
+      "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\images\\PtlKa926mmQ.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "120043"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"CCehDA7qUL6i3NvgPxehJtozJgCYWVChnZHu7ITkGeg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 08:08:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gq8zi4qdxr"
+        },
+        {
+          "Name": "label",
+          "Value": "images/PtlKa926mmQ.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-CCehDA7qUL6i3NvgPxehJtozJgCYWVChnZHu7ITkGeg="
+        }
+      ]
+    },
+    {
+      "Route": "images/PtlKa926mmQ.jpg",
+      "AssetFile": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\images\\PtlKa926mmQ.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "120043"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"CCehDA7qUL6i3NvgPxehJtozJgCYWVChnZHu7ITkGeg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 08:08:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-CCehDA7qUL6i3NvgPxehJtozJgCYWVChnZHu7ITkGeg="
         }
       ]
     },

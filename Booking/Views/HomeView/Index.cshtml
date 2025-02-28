@@ -58,26 +58,26 @@
     else
     {
         @foreach (var room in Model)
-        {
-            <div class="card mb-3 w-100 room-card">
+{
+    <div class="card mb-3 w-100 room-card">
+        <div class="row g-0"> <!-- g-0 убирает отступы между колонками -->
+            <!-- Левая колонка с изображением -->
+            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                @if (!string.IsNullOrEmpty(room.ImageUrl))
+                {
+                    <img src="@room.ImageUrl" alt="Изображение комнаты" class="img-fluid rounded-start" style="max-width: 100%; height: auto;">
+                }
+            </div>
+
+            <!-- Правая колонка с информацией -->
+            <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">Комната @room.Number</h5>
                     <p class="card-text">Цена: @room.PricePerNight ₽</p>
 
-                    <!-- Выводим картинку комнаты -->
-                    @if (!string.IsNullOrEmpty(room.ImageUrl))
-                    {
-                        <div class="room-image">
-                            <img src="@room.ImageUrl" alt="Изображение комнаты" class="img-fluid" />
-                        </div>
-                    }
-
-                    <!-- Выводим описание комнаты -->
                     @if (!string.IsNullOrEmpty(room.Description))
                     {
-                        <div class="room-description mt-2">
-                            <p>@room.Description</p>
-                        </div>
+                        <p class="card-text">@room.Description</p>
                     }
 
                     <div class="room-buttons mt-3">
@@ -106,6 +106,9 @@
                     </div>
                 </div>
             </div>
-        }
+        </div>
+    </div>
+}
+
     }
 </div>

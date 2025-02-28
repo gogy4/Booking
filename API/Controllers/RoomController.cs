@@ -50,47 +50,44 @@ namespace API.Controllers
         }
 
         [HttpPatch("{id}/update-image")]
-        public async Task<IActionResult> UpdateImage(Guid id, [FromForm] IFormFile image)
+        [Consumes("multipart/form-data")]  // Указываем, что принимаем форму с файлами
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateImage(Guid id, IFormFile file)
         {
+            if (file == null || file.Length == 0)
+            {
+                return BadRequest("Файл не загружен");
+            }
+
             var room = await roomServices.GetById(id);
             if (room == null)
             {
                 return NotFound("Room not found");
             }
 
-            if (image != null && image.Length > 0)
+            var uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
+
+            if (!Directory.Exists(uploads))
             {
-                try
-                {
-                    var imagesPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
-
-                    // Ensure directory exists
-                    if (!Directory.Exists(imagesPath))
-                    {
-                        Directory.CreateDirectory(imagesPath);
-                    }
-
-                    var filePath = Path.Combine(imagesPath, image.FileName);
-
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await image.CopyToAsync(stream);
-                    }
-
-                    var imageUrl = "/images/" + image.FileName;
-                    room.ChangeImageUrl(imageUrl);
-
-                    await roomServices.UpdateRoom(room);
-                    return Ok(new { Message = "Room image updated successfully" });
-                }
-                catch (IOException ex)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "Error saving the image", Error = ex.Message });
-                }
+                Directory.CreateDirectory(uploads);
             }
 
-            return BadRequest("No image provided");
+            var filePath = Path.Combine(uploads, file.FileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            room.ChangeImageUrl("/images/" + file.FileName);
+            await roomServices.UpdateRoom(room);
+
+            return Ok(new { Message = "Room image updated successfully", ImageUrl = room.ImageUrl });
         }
+
+
 
 
         // Обновление цены за ночь

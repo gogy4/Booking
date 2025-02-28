@@ -6,16 +6,13 @@ using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.FileProviders;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using System.IO;
+using System.Reflection;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Подключение строки подключения к БД
 var connectionString = builder.Configuration.GetConnectionString("MySqlConnection");
 
-// Регистрация репозиториев
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IRepository<Domain.Entities.Booking>, BookingRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
@@ -23,7 +20,6 @@ builder.Services.AddScoped<IRepository<Customer>, CustomerRepository>();
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IRepository<Room>, RoomRepository>();
 
-// Регистрация сервисов
 builder.Services.AddScoped<BookingServices>();
 builder.Services.AddScoped<CustomerServices>();
 builder.Services.AddScoped<ConfirmRentalService>();
@@ -32,77 +28,92 @@ builder.Services.AddScoped<RoomServices>();
 builder.Services.AddScoped<RentalService>();
 builder.Services.AddScoped<AuthenticationService>();
 
-// Настройка аутентификации
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
         options.LoginPath = "/Auth/Login";
         options.LogoutPath = "/Auth/Logout";
+        options.ExpireTimeSpan = TimeSpan.FromDays(7);
+        options.SlidingExpiration = true;
     });
 
 builder.Services.AddHttpContextAccessor();
 
-// Настройка Razor Pages и Controllers
 builder.Services.AddControllersWithViews()
     .ConfigureApplicationPartManager(apm =>
     {
         apm.ApplicationParts.Add(new AssemblyPart(typeof(API.Controllers.BookingController).Assembly));
     });
-builder.Services.AddRazorPages();
 
-// Регистрация инфраструктуры
+builder.Services.AddRazorPages();
 builder.Services.AddInfrastructure(connectionString);
 
-// Настройка Swagger
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options =>
+builder.Logging.AddDebug();
+builder.Logging.AddConsole();
+
+builder.Services.AddSwaggerGen(c =>
 {
-    options.SwaggerDoc("v1", new OpenApiInfo
+    c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Booking API",
+        Title = "My API",
         Version = "v1",
-        Description = "API для управления бронированием номеров"
+        Description = "API for managing rooms",
+        Contact = new OpenApiContact
+        {
+            Name = "Support",
+            Email = "support@example.com"
+        }
     });
-
-    // Указываем поддержку файлов
-    options.MapType<IFormFile>(() => new OpenApiSchema { Type = "string", Format = "binary" });
-
-    // Добавляем фильтр для обработки параметров типа IFormFile
-    options.OperationFilter<SwaggerFileUploadOperationFilter>();
+    c.MapType<IFormFile>(() => new OpenApiSchema { Type = "string", Format = "binary" });
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
 });
-
-
-builder.Logging.AddConsole();  // Добавляем логирование
 
 var app = builder.Build();
 
-// Ожидаем только в Development-режиме включение Swagger
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.Use(async (context, next) =>
+{
+    var user = context.User;
+    if (context.Request.Path.StartsWithSegments("/swagger"))
+    {
+        if (!user.HasClaim(c => c.Type == ClaimTypes.Role && c.Value == "Admin"))
+        {
+            context.Response.StatusCode = StatusCodes.Status403Forbidden;
+            await context.Response.WriteAsync("Access Denied: Only admins can access Swagger");
+            return;
+        }
+    }
+    await next();
+});
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();  // Убираем явное указание маршрута для Swagger
+    app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Booking API v1");
-        c.RoutePrefix = "swagger";  // Устанавливаем маршрут для Swagger UI
+        c.RoutePrefix = "swagger";
     });
 }
 
-// Разрешаем доступ к статичным файлам (например, изображениям)
 app.UseStaticFiles();
 
-// Обработка папки для картинок
 var imagesPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
 if (!Directory.Exists(imagesPath))
 {
-    Directory.CreateDirectory(imagesPath);  // Создаем папку для хранения изображений
+    Directory.CreateDirectory(imagesPath);
 }
 
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseAuthentication();  // Используем аутентификацию
+app.UseAuthentication();
 app.UseAuthorization();
 
-// Маршруты
 app.MapControllers();
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
