@@ -13,8 +13,9 @@ namespace Domain.Entities
         public int Number { get; private set; }
         public int PricePerNight { get; private set; }
         public RoomType RoomType { get; private set; }
-        public string Description { get; private set; }  // Новое поле для описания
-        public string ImageUrl { get; private set; }  // Новое поле для URL изображения
+        public string Description { get; private set; }  
+        public string FullDescription { get; private set; }
+        public string ImageUrl { get; private set; }  
 
         public Room()
         {
@@ -42,9 +43,14 @@ namespace Domain.Entities
             PricePerNight = newPrice;
         }
 
-        public void ChangeDescription(string newDescription)
+        public void ChangeShortDescription(string shortDescription)
         {
-            Description = newDescription;
+            Description = shortDescription;
+        }
+        
+        public void ChangeFullDescription(string fullDescription)
+        {
+            FullDescription = fullDescription;
         }
 
         public void ChangeImageUrl(string newImageUrl)

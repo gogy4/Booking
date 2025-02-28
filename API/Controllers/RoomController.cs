@@ -33,9 +33,8 @@ namespace API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = room.Id }, room);
         }
 
-        // Обновление описания комнаты
-        [HttpPatch("{id}/update-description")]
-        public async Task<IActionResult> UpdateDescription(Guid id, [FromForm] string description)
+        [HttpPatch("{id}/update-short-description")]
+        public async Task<IActionResult> UpdateShortDescription(Guid id, [FromForm] string description)
         {
             var room = await roomServices.GetById(id);
             if (room == null)
@@ -43,14 +42,29 @@ namespace API.Controllers
                 return NotFound("Room not found");
             }
 
-            room.ChangeDescription(description);
+            room.ChangeShortDescription(description);
+            await roomServices.UpdateRoom(room);
+
+            return Ok(new { Message = "Room description updated successfully" });
+        }
+        
+        [HttpPatch("{id}/update-full-description")]
+        public async Task<IActionResult> UpdateFullDescription(Guid id, [FromForm] string description)
+        {
+            var room = await roomServices.GetById(id);
+            if (room == null)
+            {
+                return NotFound("Room not found");
+            }
+
+            room.ChangeFullDescription(description);
             await roomServices.UpdateRoom(room);
 
             return Ok(new { Message = "Room description updated successfully" });
         }
 
         [HttpPatch("{id}/update-image")]
-        [Consumes("multipart/form-data")]  // Указываем, что принимаем форму с файлами
+        [Consumes("multipart/form-data")] 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
