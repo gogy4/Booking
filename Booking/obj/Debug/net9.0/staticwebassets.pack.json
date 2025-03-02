@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\images\\dora2.jpg"
     },
     {
+      "Id": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\images\\иван-золо-сигма.gif",
+      "PackagePath": "staticwebassets\\images\\иван-золо-сигма.gif"
+    },
+    {
       "Id": "D:\\Rider Projects\\Booking\\Booking\\Booking\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

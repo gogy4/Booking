@@ -29,9 +29,24 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Room roomDto)
         {
-            var room = await roomServices.CreateRoom(roomDto.Number, roomDto.RoomType, roomDto.PricePerNight, roomDto.Description, roomDto.ImageUrl);
+            if (roomDto == null)
+            {
+                return BadRequest("Invalid data.");
+            }
+
+            // Создание комнаты, если ImageUrl и FullDescription пустые, они будут установлены значениями по умолчанию.
+            var room = await roomServices.CreateRoom(
+                roomDto.Number,
+                roomDto.RoomType,
+                roomDto.PricePerNight,
+                roomDto.Description,
+                roomDto.ImageUrl
+            );
+
             return CreatedAtAction(nameof(GetById), new { id = room.Id }, room);
         }
+
+
 
         [HttpPatch("{id}/update-short-description")]
         public async Task<IActionResult> UpdateShortDescription(Guid id, [FromForm] string description)

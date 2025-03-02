@@ -5,8 +5,7 @@ using Infrastructure.Interfaces;
 namespace Application.Services;
 
 public class RoomServices(
-    IRoomRepository roomRepository,
-    BookingServices bookingServices)
+    IRoomRepository roomRepository)
 {
     public async Task<Room> CreateRoom(int number, RoomType roomType, int pricePerNight, string description, string imageUrl)
     {

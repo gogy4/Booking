@@ -211,7 +211,3 @@ D:\Rider Projects\Booking\Booking\Booking\obj\Debug\net9.0\Booking.genruntimecon
 D:\Rider Projects\Booking\Booking\Booking\obj\Debug\net9.0\ref\Booking.dll
 D:\Rider Projects\Booking\Booking\Booking\obj\Debug\net9.0\compressed\3npk1xjied-c7qicazj9m.gz
 D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\Booking.xml
-D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\API.xml
-D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\Application.xml
-D:\Rider Projects\Booking\Booking\Booking\bin\Debug\net9.0\Infrastructure.xml
-D:\Rider Projects\Booking\Booking\Booking\obj\Debug\net9.0\Booking.xml

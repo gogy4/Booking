@@ -33,6 +33,7 @@ public class RentalService(
     private async Task<List<BookingEntity?>> GetBookings(Room room)
     {
         var ids = room.BookingId;
+        if (ids is null) return new List<BookingEntity>();
         var bookings = new List<BookingEntity?>();
         foreach (var id in ids) bookings.Add(await bookingServices.GetById(id));
 

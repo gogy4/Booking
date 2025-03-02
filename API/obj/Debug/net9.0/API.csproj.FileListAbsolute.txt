@@ -16,6 +16,4 @@ D:\Rider Projects\Booking\Booking\API\obj\Debug\net9.0\API.dll
 D:\Rider Projects\Booking\Booking\API\obj\Debug\net9.0\refint\API.dll
 D:\Rider Projects\Booking\Booking\API\obj\Debug\net9.0\API.pdb
 D:\Rider Projects\Booking\Booking\API\obj\Debug\net9.0\ref\API.dll
-D:\Rider Projects\Booking\Booking\API\bin\Debug\net9.0\API.xml
-D:\Rider Projects\Booking\Booking\API\bin\Debug\net9.0\Application.xml
-D:\Rider Projects\Booking\Booking\API\obj\Debug\net9.0\API.xml
+D:\Rider Projects\Booking\Booking\API\bin\Debug\net9.0\Booking.xml

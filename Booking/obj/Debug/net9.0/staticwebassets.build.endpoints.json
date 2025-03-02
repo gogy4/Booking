@@ -1061,6 +1061,88 @@
       ]
     },
     {
+      "Route": "images/иван-золо-сигма.gif",
+      "AssetFile": "images/иван-золо-сигма.gif",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1032887"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/gif"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"b2BGXdGEvfOncxHhr39kGMquav0o2AZ8IUkZ/Y4+U/g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 09:16:27 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-b2BGXdGEvfOncxHhr39kGMquav0o2AZ8IUkZ/Y4+U/g="
+        }
+      ]
+    },
+    {
+      "Route": "images/иван-золо-сигма.h4vk9z75vw.gif",
+      "AssetFile": "images/иван-золо-сигма.gif",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1032887"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/gif"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"b2BGXdGEvfOncxHhr39kGMquav0o2AZ8IUkZ/Y4+U/g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 09:16:27 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "h4vk9z75vw"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-b2BGXdGEvfOncxHhr39kGMquav0o2AZ8IUkZ/Y4+U/g="
+        },
+        {
+          "Name": "label",
+          "Value": "images/иван-золо-сигма.gif"
+        }
+      ]
+    },
+    {
       "Route": "js/site.js",
       "AssetFile": "js/site.js.gz",
       "Selectors": [

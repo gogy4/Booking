@@ -3,7 +3,9 @@
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <OutputType>Library</OutputType> 
+        <OutputType>Library</OutputType>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Booking.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>

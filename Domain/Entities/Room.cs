@@ -9,7 +9,7 @@ namespace Domain.Entities
     public class Room : IEntity
     {
         public Guid Id { get; private set; }
-        public List<Guid> BookingId { get;  }
+        public List<Guid> BookingId { get; private set;} = new ();
         public int Number { get; private set; }
         public int PricePerNight { get; private set; }
         public RoomType RoomType { get; private set; }
@@ -22,16 +22,18 @@ namespace Domain.Entities
         }
 
         [JsonConstructor]
-        public Room(int number, List<Guid> bookingId, int pricePerNight, RoomType roomType, string description, string imageUrl)
+        public Room(int number, List<Guid> bookingId, int pricePerNight, RoomType roomType, string description = "", string imageUrl = "", string fullDescription = "")
         {
             Id = Guid.NewGuid();
             Number = number;
-            BookingId = bookingId;
+            BookingId = bookingId ?? new List<Guid>();
             PricePerNight = pricePerNight;
             RoomType = roomType;
             Description = description;
             ImageUrl = imageUrl;
+            FullDescription = fullDescription;
         }
+
 
         public void AddBooking(Guid bookingId)
         {

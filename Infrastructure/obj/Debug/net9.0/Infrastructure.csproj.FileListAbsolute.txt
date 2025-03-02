@@ -16,5 +16,4 @@ D:\Rider Projects\Booking\Booking\Infrastructure\obj\Debug\net9.0\refint\Infrast
 D:\Rider Projects\Booking\Booking\Infrastructure\obj\Debug\net9.0\Infrastructure.pdb
 D:\Rider Projects\Booking\Booking\Infrastructure\obj\Debug\net9.0\Infrastructure.genruntimeconfig.cache
 D:\Rider Projects\Booking\Booking\Infrastructure\obj\Debug\net9.0\ref\Infrastructure.dll
-D:\Rider Projects\Booking\Booking\Infrastructure\bin\Debug\net9.0\Infrastructure.xml
-D:\Rider Projects\Booking\Booking\Infrastructure\obj\Debug\net9.0\Infrastructure.xml
+D:\Rider Projects\Booking\Booking\Infrastructure\bin\Debug\net9.0\Booking.xml
